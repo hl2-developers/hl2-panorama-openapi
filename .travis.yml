@@ -1,0 +1,10 @@
+language: node_js
+script:
+  - npm run validate
+notifications:
+  email: false
+  slack:
+    rooms:
+      secure: aM+/wn2Pl0RVZo8CADdmK/qWryOkZIvMoFm/cMTyralhS5kFd5yMK5c3j3UW+1ZWOPBPeW2FH4fzs8uoM329Hbekt33W6X/uLIYIEwYyOzH6Fe7YI05UpAadb08klh2EUW0w/ts85P1CPMB6aCikV06+mKgFYLzHN4MLmMrGQGayDrzDGrJxjVRLzZy/gWjdek8EJDfaLa6QYL9yOAxI+zOBTQHrXhPpl/TXmjDzbNpKCVIKTgOasxRusKPPDRR+lxboV4Z8Jiw6klSfwW4mpqaTg3Y+Soy7sCqha4YwLnggdBPWuqgKSvP2QBEEnZreAElMuLmroW/wpzXFIIr8rPRE78JolkTybjiWaYTTeP1d8XUo24Yucy0o6Eb35HCS04C3ZOCY91QE8d0JdyUQGLXN4P4qAyeX5xQCG6CDR2N98fHZsx+6EBGSQOOZVCG28GIrWJyuDPcyYj58uK1iVeSs0tx9fkObaU64sGr6Iq0xAHvSKVUQAhA31BmjzbVwFbDdwkuwsZyQrHO9BTbv2FYW86PSZaorxbnkPuYGRdbR6T32Irg/k4bEwiS8m3aSiqVhCHOB1uDrPRTDIA1SQpn7fyfENR/dWqV+rIyYUm7T5dKcENOoHd/ugtNKol03lqn9JcXhmRAHISspqDUrfx/xXVdXXl8yxdcUlOsa6Tc=
+    on_success: change
+    on_failure: always
