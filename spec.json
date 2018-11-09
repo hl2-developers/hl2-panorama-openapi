@@ -1,0 +1,121 @@
+{
+  "openapi": "3.0.2",
+  "info": {
+    "title": "hl2 Panorama API",
+    "description": "Welcome to the hl2 Panorama API specification. We will commit ourselves to support the library and maintain backwards compatibility in the future, but we reserve the right to make incompatible changes when necessary. If you experience any issues, contact support.",
+    "version": "v1",
+    "contact": {
+      "name": "API support",
+      "email": "support@hl2.com"
+    },
+    "license": {
+      "name": "Copyright (C) hl2",
+      "url": "https://github.com/hl2/hl2-mailer-service/blob/master/LICENSE.md"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api.hl2.com/panorama/v1",
+      "description": "The production server"
+    }
+  ],
+  "security": [{ "bearerAuth": [] }],
+  "tags": [{ "name": "Help" }],
+  "paths": {
+    "/help/languages": {
+      "get": {
+        "tags": ["Help"],
+        "description": "Returns the supported languages",
+        "responses": {
+          "200": {
+            "description": "Supported language array",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "code": {
+                        "type": "string"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "nativeName": {
+                        "type": "string"
+                      }
+                    },
+                    "example": {
+                      "code": "en",
+                      "name": "English",
+                      "nativeName": "English"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": { "$ref": "#/components/responses/401" }
+        }
+      }
+    },
+    "/help/timezones": {
+      "get": {
+        "tags": ["Help"],
+        "description": "Returns the supported timezones",
+        "responses": {
+          "200": {
+            "description": "Supported timezone array",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "example": "Africa/Abidjan"
+                  }
+                }
+              }
+            }
+          },
+          "401": { "$ref": "#/components/responses/401" }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Error": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "message": "Unauthorized"
+        }
+      }
+    },
+    "responses": {
+      "401": {
+        "description": "Your API key is not valid",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  }
+}
