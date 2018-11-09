@@ -13,9 +13,12 @@
     "url": "https://github.com/hl2/hl2-panorama-openapi/issues"
   },
   "scripts": {
-    "validate": "node_modules/.bin/swagger-cli validate openapi/spec.json"
+    "validate": "swagger-cli validate openapi/spec.json",
+    "edit": "opn node_modules/swagger-editor-dist/index.html"
   },
   "devDependencies": {
-    "swagger-cli": "2.2.0"
+    "opn-cli": "4.0.0",
+    "swagger-cli": "2.2.0",
+    "swagger-editor-dist": "3.6.14"
   }
 }

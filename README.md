@@ -20,6 +20,7 @@ Scripts
 
 - `npm install` install project dependencies
 - `npm run validate` validates the [OpenAPI](https://openapis.org) specification
+- `npm run editor` starts the swagger editor
 
 License
 -------
