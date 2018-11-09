@@ -76,7 +76,9 @@
               }
             }
           },
-          "401": { "$ref": "#/components/responses/401" }
+          "401": { "$ref": "#/components/responses/401" },
+          "429": { "$ref": "#/components/responses/429" },
+          "500": { "$ref": "#/components/responses/500" }
         }
       }
     },
@@ -99,7 +101,9 @@
               }
             }
           },
-          "401": { "$ref": "#/components/responses/401" }
+          "401": { "$ref": "#/components/responses/401" },
+          "429": { "$ref": "#/components/responses/429" },
+          "500": { "$ref": "#/components/responses/500" }
         }
       }
     }
@@ -112,15 +116,32 @@
           "message": {
             "type": "string"
           }
-        },
-        "example": {
-          "message": "Unauthorized"
         }
       }
     },
     "responses": {
       "401": {
-        "description": "Your API key is not valid",
+        "description": "Unauthorized, your API key is not valid",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      },
+      "429": {
+        "description": "Too Many Requests, API rate limit exceeded",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      },
+      "500": {
+        "description": "Internal Server Error, try again later or contact support",
         "content": {
           "application/json": {
             "schema": {
