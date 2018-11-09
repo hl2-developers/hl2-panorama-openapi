@@ -20,7 +20,27 @@
     }
   ],
   "security": [{ "bearerAuth": [] }],
-  "tags": [{ "name": "Help" }],
+  "tags": [
+    { "name": "Accounts", "description": "Everything about accounts" },
+    {
+      "name": "Organizations",
+      "description": "Everything about organizations"
+    },
+    { "name": "Teams", "description": "Everything about organization teams" },
+    {
+      "name": "Devices",
+      "description": "Everything about organization devices"
+    },
+    {
+      "name": "Products",
+      "description": "Everything about organization products"
+    },
+    {
+      "name": "Applications",
+      "description": "Everything about organization applications"
+    },
+    { "name": "Help" }
+  ],
   "paths": {
     "/help/languages": {
       "get": {
