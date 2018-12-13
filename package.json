@@ -18,6 +18,8 @@
     "validate": "swagger-cli validate openapi/spec.json"
   },
   "devDependencies": {
+    "husky": "1.2.0",
+    "lint-staged": "8.1.0",
     "opn-cli": "4.0.0",
     "prettier": "1.15.3",
     "swagger-cli": "2.2.0",
@@ -25,5 +27,16 @@
   },
   "prettier": {
     "trailingComma": "es5"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{json,md}": [
+      "prettier --write",
+      "git add"
+    ]
   }
 }
