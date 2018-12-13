@@ -1,39 +1,15 @@
-hl2 Panorama OpenAPI Specification
-==================================
+# hl2 Panorama's OpenAPI specification &middot; [![Build Status](https://travis-ci.com/hl2/hl2-panorama-openapi.svg?token=tSMJcyr4W5f93JMvoe6S&branch=master)](https://travis-ci.com/hl2/hl2-panorama-openapi)
 
-[![Build Status](https://travis-ci.com/hl2/hl2-panorama-openapi.svg?token=tSMJcyr4W5f93JMvoe6S&branch=master)](https://travis-ci.com/hl2/hl2-panorama-openapi)
+## Description
 
-Contents
---------
+The [OpenAPI](https://openapis.org) specification for hl2 Panorama API.
 
-- [Description](#description)
-- [Scripts](#scripts)
-- [License](#license)
+## Scripts
 
-Description
------------
+- `npm install`: install dependencies
+- `npm run validate`: validate [OpenAPI](https://openapis.org) specification
+- `npm run editor`: start swagger editor
 
-[OpenAPI](https://openapis.org) Specification for the hl2 Panorama API.
+## License
 
-Scripts
--------
-
-- `npm install` install project dependencies
-- `npm run validate` validates the [OpenAPI](https://openapis.org) specification
-- `npm run editor` starts the swagger editor
-
-License
--------
-
-### Copyright (C) hl2
-
-#### All rights reserved
-#### contact@hl2.com
-
-All information contained herein is, and remains the property of
-hl2 and its suppliers, if any. The intellectual and technical
-concepts contained herein are proprietary to hl2 and its suppliers
-and may be covered by foreign patents, patents in process, and are
-protected by trade secret or copyright law. Dissemination of this
-information or reproduction of this material is strictly forbidden unless
-prior written permission is obtained from hl2.
+See [LICENSE.md](../LICENSE.md).
