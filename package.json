@@ -13,7 +13,7 @@
     "url": "https://github.com/hl2/hl2-panorama-openapi/issues"
   },
   "scripts": {
-    "edit": "opn node_modules/swagger-editor-dist/index.html",
+    "editor": "opn node_modules/swagger-editor-dist/index.html",
     "format": "prettier --write '**/*.{json,md}'",
     "validate": "swagger-cli validate openapi/spec.json"
   },
