@@ -10,7 +10,7 @@
     },
     "license": {
       "name": "Copyright (C) hl2",
-      "url": "https://github.com/hl2/hl2-mailer-service/blob/master/LICENSE.md"
+      "url": "https://github.com/hl2/hl2-panorama-openapi/blob/master/LICENSE.md"
     }
   },
   "servers": [
