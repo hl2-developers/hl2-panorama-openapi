@@ -21,12 +21,18 @@
   ],
   "security": [{ "bearerAuth": [] }],
   "tags": [
-    { "name": "Accounts", "description": "Everything about accounts" },
+    {
+      "name": "Accounts",
+      "description": "Everything about accounts"
+    },
     {
       "name": "Organizations",
       "description": "Everything about organizations"
     },
-    { "name": "Teams", "description": "Everything about organization teams" },
+    {
+      "name": "Teams",
+      "description": "Everything about organization teams"
+    },
     {
       "name": "Devices",
       "description": "Everything about organization devices"
@@ -39,7 +45,10 @@
       "name": "Applications",
       "description": "Everything about organization applications"
     },
-    { "name": "Help" }
+    {
+      "name": "Help",
+      "description": "Developer utilities"
+    }
   ],
   "paths": {
     "/help/languages": {
