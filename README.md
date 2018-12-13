@@ -6,9 +6,9 @@ The [OpenAPI](https://openapis.org) specification for hl2 Panorama API.
 
 ## Scripts
 
-- `npm install`: install dependencies
-- `npm run validate`: validate [OpenAPI](https://openapis.org) specification
-- `npm run editor`: start swagger editor
+- `format`: format project files with [prettier](https://Prettier.io/)
+- `validate`: validate [OpenAPI](https://openapis.org) specification
+- `editor`: start swagger editor
 
 ## License
 
