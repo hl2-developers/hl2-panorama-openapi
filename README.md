@@ -12,4 +12,4 @@ The [OpenAPI](https://openapis.org) specification for hl2 Panorama API.
 
 ## License
 
-See [LICENSE.md](../LICENSE.md).
+See [LICENSE.md](./LICENSE.md).
