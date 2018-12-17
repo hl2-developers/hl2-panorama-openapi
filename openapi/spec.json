@@ -146,9 +146,9 @@
       }
     },
     "/organizations/{organizationId}": {
+      "parameters": [{ "$ref": "#/components/parameters/organizationId" }],
       "get": {
         "tags": ["Organizations"],
-        "parameters": [{ "$ref": "#/components/parameters/organizationId" }],
         "description": "Get your organization details",
         "responses": {
           "200": {
@@ -165,7 +165,6 @@
       },
       "put": {
         "tags": ["Organizations"],
-        "parameters": [{ "$ref": "#/components/parameters/organizationId" }],
         "description": "Update your organization details",
         "requestBody": {
           "content": {
@@ -188,6 +187,82 @@
             "content": {
               "application/json": {
                 "schema": { "$ref": "#/components/schemas/Organization" }
+              }
+            }
+          },
+          "401": { "$ref": "#/components/responses/401" },
+          "422": { "$ref": "#/components/responses/422" },
+          "500": { "$ref": "#/components/responses/500" }
+        }
+      }
+    },
+    "/organizations/{organizationId}/teams": {
+      "parameters": [{ "$ref": "#/components/parameters/organizationId" }],
+      "get": {
+        "tags": ["Organizations"],
+        "description": "List your organization’s teams",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "limit",
+            "description": "The number of items to be returned by page",
+            "schema": { "type": "integer", "default": 10 }
+          },
+          {
+            "in": "query",
+            "name": "page",
+            "description": "The page number",
+            "schema": { "type": "integer", "default": 1 }
+          },
+          {
+            "in": "query",
+            "name": "q",
+            "description": "The search regex in username and name fields",
+            "schema": { "type": "string" }
+          },
+          {
+            "in": "query",
+            "name": "sort",
+            "description": "The sort order",
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Teams" }
+              }
+            }
+          },
+          "401": { "$ref": "#/components/responses/401" },
+          "500": { "$ref": "#/components/responses/500" }
+        }
+      },
+      "post": {
+        "tags": ["Organizations"],
+        "description": "Create a team for your organization",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["name"],
+                "properties": {
+                  "name": { "type": "string" },
+                  "description": { "type": "string" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Team" }
               }
             }
           },
@@ -480,6 +555,31 @@
           "createdAt": { "type": "string" },
           "updatedAt": { "type": "string" },
           "disabled": { "type": "boolean" }
+        }
+      },
+      "Teams": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "id": { "type": "string" },
+            "name": { "type": "string" },
+            "slug": { "type": "string" },
+            "description": { "type": "string" },
+            "organizationId": { "type": "string" }
+          }
+        }
+      },
+      "Team": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "name": { "type": "string" },
+          "slug": { "type": "string" },
+          "description": { "type": "string" },
+          "organizationId": { "type": "string" },
+          "createdAt": { "type": "string" },
+          "updatedAt": { "type": "string" }
         }
       },
       "Products": {
