@@ -51,6 +51,194 @@
     }
   ],
   "paths": {
+    "/organizations/{organizationId}/products": {
+      "parameters": [{ "$ref": "#/components/parameters/organizationId" }],
+      "get": {
+        "tags": ["Organizations"],
+        "description": "List the products for your organization. Public products not owned by your organization are not listed",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "limit",
+            "description": "The number of items to be returned by page",
+            "schema": { "type": "integer" }
+          },
+          {
+            "in": "query",
+            "name": "page",
+            "description": "The page number",
+            "schema": { "type": "integer" }
+          },
+          {
+            "in": "query",
+            "name": "q",
+            "description": "The search regex in name, slug and versionfields",
+            "schema": { "type": "string" }
+          },
+          {
+            "in": "query",
+            "name": "sort",
+            "description": "The sort order",
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of products",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Products" }
+              }
+            }
+          },
+          "401": { "$ref": "#/components/responses/401" },
+          "500": { "$ref": "#/components/responses/500" }
+        }
+      },
+      "post": {
+        "tags": ["Organizations"],
+        "description": "Create a product for your organization",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": { "type": "string" },
+                  "version": { "type": "string" },
+                  "variables": {
+                    "type": "array",
+                    "items": { "$ref": "#/components/schemas/ProductVariable" }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Created product",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Product" }
+              }
+            }
+          },
+          "401": { "$ref": "#/components/responses/401" },
+          "422": { "$ref": "#/components/responses/422" },
+          "500": { "$ref": "#/components/responses/500" }
+        }
+      }
+    },
+    "/products": {
+      "get": {
+        "tags": ["Products"],
+        "description": "List all the public products, whether they belong to your organization or not",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "limit",
+            "description": "The number of items to be returned by page",
+            "schema": { "type": "integer" }
+          },
+          {
+            "in": "query",
+            "name": "page",
+            "description": "The page number",
+            "schema": { "type": "integer" }
+          },
+          {
+            "in": "query",
+            "name": "q",
+            "description": "The search regex in name, slug and versionfields",
+            "schema": { "type": "string" }
+          },
+          {
+            "in": "query",
+            "name": "sort",
+            "description": "The sort order",
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of products",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Products" }
+              }
+            }
+          },
+          "401": { "$ref": "#/components/responses/401" },
+          "500": { "$ref": "#/components/responses/500" }
+        }
+      }
+    },
+    "/products/{organizationId}/{productId}": {
+      "parameters": [
+        { "$ref": "#/components/parameters/organizationId" },
+        { "$ref": "#/components/parameters/productId" }
+      ],
+      "get": {
+        "tags": ["Products"],
+        "description": "Get the details of one of your organization’s products, or of a public product not owned by your organization",
+        "responses": {
+          "200": {
+            "description": "A product",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Product" }
+              }
+            }
+          },
+          "401": { "$ref": "#/components/responses/401" },
+          "500": { "$ref": "#/components/responses/500" }
+        }
+      },
+      "put": {
+        "tags": ["Products"],
+        "description": "List all the public products, whether they belong to your organization or not",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": { "type": "string" },
+                  "version": { "type": "string" },
+                  "variables": {
+                    "type": "array",
+                    "items": { "$ref": "#/components/schemas/ProductVariable" }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Updated product",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Product" }
+              }
+            }
+          },
+          "401": { "$ref": "#/components/responses/401" },
+          "422": { "$ref": "#/components/responses/422" },
+          "500": { "$ref": "#/components/responses/500" }
+        }
+      },
+      "delete": {
+        "tags": ["Products"],
+        "description": "Delete one of your organization’s products. This will only be possible if the product is not public, and not used by any device",
+        "responses": {
+          "204": { "$ref": "#/components/responses/204" },
+          "401": { "$ref": "#/components/responses/401" },
+          "500": { "$ref": "#/components/responses/500" }
+        }
+      }
+    },
     "/help/languages": {
       "get": {
         "tags": ["Help"],
@@ -119,6 +307,75 @@
   },
   "components": {
     "schemas": {
+      "Products": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "id": { "type": "string" },
+            "name": { "type": "string" },
+            "slug": { "type": "string" },
+            "version": { "type": "string" },
+            "organizationId": { "type": "string" },
+            "public": { "type": "boolean" }
+          }
+        }
+      },
+      "Product": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "name": { "type": "string" },
+          "slug": { "type": "string" },
+          "version": { "type": "string" },
+          "organizationId": { "type": "string" },
+          "variables": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/ProductVariable" }
+          },
+          "public": { "type": "boolean" },
+          "deviceCount": { "type": "number" },
+          "createdAt": { "type": "string" },
+          "updatedAt": { "type": "string" }
+        }
+      },
+      "ProductVariable": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "name": { "type": "string" },
+            "unit": { "type": "string" },
+            "type": {
+              "type": "string",
+              "enum": [
+                "BOOL",
+                "TXT",
+                "INT16",
+                "INT64",
+                "FLOAT32",
+                "UNINT8",
+                "UNINT16",
+                "UNINT32"
+              ]
+            },
+            "mappings": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "streamId": { "type": "number" },
+                  "streamType": {
+                    "type": "string",
+                    "enum": ["BIN", "RAW", "TXT"]
+                  },
+                  "varNumber": { "type": "number" }
+                }
+              }
+            }
+          }
+        }
+      },
       "Error": {
         "type": "object",
         "properties": {
@@ -128,9 +385,42 @@
         }
       }
     },
+    "parameters": {
+      "organizationId": {
+        "in": "path",
+        "name": "organizationId",
+        "description": "The organization id",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "productId": {
+        "in": "path",
+        "name": "productId",
+        "description": "The product id",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      }
+    },
     "responses": {
+      "204": {
+        "description": "No Content"
+      },
       "401": {
         "description": "Unauthorized, your API key is not valid",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      },
+      "422": {
+        "description": "Unprocessable Entity, You have sent invalid fields (details are provided in the error body)",
         "content": {
           "application/json": {
             "schema": {
