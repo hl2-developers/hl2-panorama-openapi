@@ -57,7 +57,7 @@
         "description": "Get your account details",
         "responses": {
           "200": {
-            "description": "Your account details",
+            "description": "Successful response",
             "content": {
               "application/json": {
                 "schema": { "$ref": "#/components/schemas/Account" }
@@ -76,6 +76,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
+                "required": ["email", "username"],
                 "properties": {
                   "email": { "type": "string" },
                   "name": { "type": "string" },
@@ -87,7 +88,7 @@
         },
         "responses": {
           "200": {
-            "description": "Updated account details",
+            "description": "Successful response",
             "content": {
               "application/json": {
                 "schema": { "$ref": "#/components/schemas/Account" }
@@ -103,10 +104,36 @@
     "/accounts": {
       "get": {
         "tags": ["Accounts"],
-        "description": "List all the active users of the HL2 Panorama platform, or search for one using their name or username. This is useful to figure out their IDs to add them to your organization",
+        "description": "List all the active users of the hl2 Panorama platform, or search for one using their name or username. This is useful to figure out their IDs to add them to your organization",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "limit",
+            "description": "The number of items to be returned by page",
+            "schema": { "type": "integer", "default": 10 }
+          },
+          {
+            "in": "query",
+            "name": "page",
+            "description": "The page number",
+            "schema": { "type": "integer", "default": 1 }
+          },
+          {
+            "in": "query",
+            "name": "q",
+            "description": "The search regex in username and name fields",
+            "schema": { "type": "string" }
+          },
+          {
+            "in": "query",
+            "name": "sort",
+            "description": "The sort order",
+            "schema": { "type": "string" }
+          }
+        ],
         "responses": {
           "200": {
-            "description": "Active user accounts",
+            "description": "Successful response",
             "content": {
               "application/json": {
                 "schema": { "$ref": "#/components/schemas/Accounts" }
@@ -125,7 +152,7 @@
         "description": "Get your organization details",
         "responses": {
           "200": {
-            "description": "Your organization details",
+            "description": "Successful response",
             "content": {
               "application/json": {
                 "schema": { "$ref": "#/components/schemas/Organization" }
@@ -145,6 +172,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
+                "required": ["email", "username"],
                 "properties": {
                   "email": { "type": "string" },
                   "name": { "type": "string" },
@@ -156,7 +184,7 @@
         },
         "responses": {
           "200": {
-            "description": "Updated organization details",
+            "description": "Successful response",
             "content": {
               "application/json": {
                 "schema": { "$ref": "#/components/schemas/Organization" }
@@ -202,7 +230,7 @@
         ],
         "responses": {
           "200": {
-            "description": "A list of products",
+            "description": "Successful response",
             "content": {
               "application/json": {
                 "schema": { "$ref": "#/components/schemas/Products" }
@@ -221,6 +249,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
+                "required": ["name", "version", "variables"],
                 "properties": {
                   "name": { "type": "string" },
                   "version": { "type": "string" },
@@ -235,7 +264,7 @@
         },
         "responses": {
           "200": {
-            "description": "Created product",
+            "description": "Successful response",
             "content": {
               "application/json": {
                 "schema": { "$ref": "#/components/schemas/Product" }
@@ -302,7 +331,7 @@
         "description": "Get the details of one of your organization’s products, or of a public product not owned by your organization",
         "responses": {
           "200": {
-            "description": "A product",
+            "description": "Successful response",
             "content": {
               "application/json": {
                 "schema": { "$ref": "#/components/schemas/Product" }
@@ -321,6 +350,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
+                "required": ["name", "variables", "version"],
                 "properties": {
                   "name": { "type": "string" },
                   "version": { "type": "string" },
@@ -335,7 +365,7 @@
         },
         "responses": {
           "200": {
-            "description": "Updated product",
+            "description": "Successful response",
             "content": {
               "application/json": {
                 "schema": { "$ref": "#/components/schemas/Product" }
@@ -363,7 +393,7 @@
         "description": "Returns the supported languages",
         "responses": {
           "200": {
-            "description": "Supported language array",
+            "description": "Successful response",
             "content": {
               "application/json": {
                 "schema": {
@@ -403,7 +433,7 @@
         "description": "Returns the supported timezones",
         "responses": {
           "200": {
-            "description": "Supported timezone array",
+            "description": "Successful response",
             "content": {
               "application/json": {
                 "schema": {
