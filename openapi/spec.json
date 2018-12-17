@@ -582,6 +582,21 @@
           "updatedAt": { "type": "string" }
         }
       },
+      "Organization": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "name": { "type": "string" },
+          "username": { "type": "string" },
+          "email": { "type": "string" },
+          "role": { "type": "string" },
+          "type": { "type": "string" },
+          "memberCount": { "type": "number" },
+          "disabled": { "type": "boolean" },
+          "createdAt": { "type": "string" },
+          "updatedAt": { "type": "string" }
+        }
+      },
       "Products": {
         "type": "array",
         "items": {
@@ -649,21 +664,6 @@
               }
             }
           }
-        }
-      },
-      "Organization": {
-        "type": "object",
-        "properties": {
-          "id": { "type": "string" },
-          "name": { "type": "string" },
-          "username": { "type": "string" },
-          "email": { "type": "string" },
-          "role": { "type": "string" },
-          "type": { "type": "string" },
-          "memberCount": { "type": "number" },
-          "disabled": { "type": "boolean" },
-          "createdAt": { "type": "string" },
-          "updatedAt": { "type": "string" }
         }
       },
       "Error": {
