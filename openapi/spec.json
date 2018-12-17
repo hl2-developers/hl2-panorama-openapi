@@ -51,6 +51,57 @@
     }
   ],
   "paths": {
+    "/organizations/{organizationId}": {
+      "get": {
+        "tags": ["Organizations"],
+        "parameters": [{ "$ref": "#/components/parameters/organizationId" }],
+        "description": "Get your organization details",
+        "responses": {
+          "200": {
+            "description": "Your organization details",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Organization" }
+              }
+            }
+          },
+          "401": { "$ref": "#/components/responses/401" },
+          "500": { "$ref": "#/components/responses/500" }
+        }
+      },
+      "put": {
+        "tags": ["Organizations"],
+        "parameters": [{ "$ref": "#/components/parameters/organizationId" }],
+        "description": "Update your organization details",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": { "type": "string" },
+                  "name": { "type": "string" },
+                  "username": { "type": "string" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Updated organization details",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Organization" }
+              }
+            }
+          },
+          "401": { "$ref": "#/components/responses/401" },
+          "422": { "$ref": "#/components/responses/422" },
+          "500": { "$ref": "#/components/responses/500" }
+        }
+      }
+    },
     "/organizations/{organizationId}/products": {
       "parameters": [{ "$ref": "#/components/parameters/organizationId" }],
       "get": {
@@ -374,6 +425,21 @@
               }
             }
           }
+        }
+      },
+      "Organization": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "name": { "type": "string" },
+          "username": { "type": "string" },
+          "email": { "type": "string" },
+          "role": { "type": "string" },
+          "type": { "type": "string" },
+          "memberCount": { "type": "number" },
+          "disabled": { "type": "boolean" },
+          "createdAt": { "type": "string" },
+          "updatedAt": { "type": "string" }
         }
       },
       "Error": {
