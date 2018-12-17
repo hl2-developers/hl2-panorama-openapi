@@ -51,6 +51,24 @@
     }
   ],
   "paths": {
+    "/accounts": {
+      "get": {
+        "tags": ["Accounts"],
+        "description": "List all the active users of the HL2 Panorama platform, or search for one using their name or username. This is useful to figure out their IDs to add them to your organization",
+        "responses": {
+          "200": {
+            "description": "Active user accounts",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Account" }
+              }
+            }
+          },
+          "401": { "$ref": "#/components/responses/401" },
+          "500": { "$ref": "#/components/responses/500" }
+        }
+      }
+    },
     "/organizations/{organizationId}": {
       "get": {
         "tags": ["Organizations"],
@@ -358,6 +376,19 @@
   },
   "components": {
     "schemas": {
+      "Accounts": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "id": { "type": "string" },
+            "type": { "type": "string" },
+            "name": { "type": "string" },
+            "username": { "type": "string" },
+            "gravatarURL": { "type": "string" }
+          }
+        }
+      },
       "Products": {
         "type": "array",
         "items": {
