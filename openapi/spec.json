@@ -51,6 +51,55 @@
     }
   ],
   "paths": {
+    "/account": {
+      "get": {
+        "tags": ["Accounts"],
+        "description": "Get your account details",
+        "responses": {
+          "200": {
+            "description": "Your account details",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Account" }
+              }
+            }
+          },
+          "401": { "$ref": "#/components/responses/401" },
+          "500": { "$ref": "#/components/responses/500" }
+        }
+      },
+      "put": {
+        "tags": ["Accounts"],
+        "description": "Update your account details",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": { "type": "string" },
+                  "name": { "type": "string" },
+                  "username": { "type": "string" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Updated account details",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Account" }
+              }
+            }
+          },
+          "401": { "$ref": "#/components/responses/401" },
+          "422": { "$ref": "#/components/responses/422" },
+          "500": { "$ref": "#/components/responses/500" }
+        }
+      }
+    },
     "/accounts": {
       "get": {
         "tags": ["Accounts"],
@@ -387,6 +436,20 @@
             "username": { "type": "string" },
             "gravatarURL": { "type": "string" }
           }
+        }
+      },
+      "Account": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "email": { "type": "string" },
+          "username": { "type": "string" },
+          "name": { "type": "string" },
+          "type": { "type": "string" },
+          "gravatarURL": { "type": "string" },
+          "createdAt": { "type": "string" },
+          "updatedAt": { "type": "string" },
+          "disabled": { "type": "boolean" }
         }
       },
       "Products": {
