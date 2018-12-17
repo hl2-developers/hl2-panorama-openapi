@@ -60,7 +60,7 @@
             "description": "Active user accounts",
             "content": {
               "application/json": {
-                "schema": { "$ref": "#/components/schemas/Account" }
+                "schema": { "$ref": "#/components/schemas/Accounts" }
               }
             }
           },
