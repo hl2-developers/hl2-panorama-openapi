@@ -106,30 +106,10 @@
         "tags": ["Accounts"],
         "description": "List all the active users of the hl2 Panorama platform, or search for one using their name or username. This is useful to figure out their IDs to add them to your organization",
         "parameters": [
-          {
-            "in": "query",
-            "name": "limit",
-            "description": "The number of items to be returned by page",
-            "schema": { "type": "integer", "default": 10 }
-          },
-          {
-            "in": "query",
-            "name": "page",
-            "description": "The page number",
-            "schema": { "type": "integer", "default": 1 }
-          },
-          {
-            "in": "query",
-            "name": "q",
-            "description": "The search regex in username and name fields",
-            "schema": { "type": "string" }
-          },
-          {
-            "in": "query",
-            "name": "sort",
-            "description": "The sort order",
-            "schema": { "type": "string" }
-          }
+          { "$ref": "#/components/parameters/limit" },
+          { "$ref": "#/components/parameters/page" },
+          { "$ref": "#/components/parameters/q" },
+          { "$ref": "#/components/parameters/sort" }
         ],
         "responses": {
           "200": {
@@ -202,30 +182,10 @@
         "tags": ["Organizations"],
         "description": "List your organization’s teams",
         "parameters": [
-          {
-            "in": "query",
-            "name": "limit",
-            "description": "The number of items to be returned by page",
-            "schema": { "type": "integer", "default": 10 }
-          },
-          {
-            "in": "query",
-            "name": "page",
-            "description": "The page number",
-            "schema": { "type": "integer", "default": 1 }
-          },
-          {
-            "in": "query",
-            "name": "q",
-            "description": "The search regex in username and name fields",
-            "schema": { "type": "string" }
-          },
-          {
-            "in": "query",
-            "name": "sort",
-            "description": "The sort order",
-            "schema": { "type": "string" }
-          }
+          { "$ref": "#/components/parameters/limit" },
+          { "$ref": "#/components/parameters/page" },
+          { "$ref": "#/components/parameters/q" },
+          { "$ref": "#/components/parameters/sort" }
         ],
         "responses": {
           "200": {
@@ -278,30 +238,10 @@
         "tags": ["Organizations"],
         "description": "List the products for your organization. Public products not owned by your organization are not listed",
         "parameters": [
-          {
-            "in": "query",
-            "name": "limit",
-            "description": "The number of items to be returned by page",
-            "schema": { "type": "integer" }
-          },
-          {
-            "in": "query",
-            "name": "page",
-            "description": "The page number",
-            "schema": { "type": "integer" }
-          },
-          {
-            "in": "query",
-            "name": "q",
-            "description": "The search regex in name, slug and versionfields",
-            "schema": { "type": "string" }
-          },
-          {
-            "in": "query",
-            "name": "sort",
-            "description": "The sort order",
-            "schema": { "type": "string" }
-          }
+          { "$ref": "#/components/parameters/limit" },
+          { "$ref": "#/components/parameters/page" },
+          { "$ref": "#/components/parameters/q" },
+          { "$ref": "#/components/parameters/sort" }
         ],
         "responses": {
           "200": {
@@ -357,30 +297,10 @@
         "tags": ["Products"],
         "description": "List all the public products, whether they belong to your organization or not",
         "parameters": [
-          {
-            "in": "query",
-            "name": "limit",
-            "description": "The number of items to be returned by page",
-            "schema": { "type": "integer" }
-          },
-          {
-            "in": "query",
-            "name": "page",
-            "description": "The page number",
-            "schema": { "type": "integer" }
-          },
-          {
-            "in": "query",
-            "name": "q",
-            "description": "The search regex in name, slug and versionfields",
-            "schema": { "type": "string" }
-          },
-          {
-            "in": "query",
-            "name": "sort",
-            "description": "The sort order",
-            "schema": { "type": "string" }
-          }
+          { "$ref": "#/components/parameters/limit" },
+          { "$ref": "#/components/parameters/page" },
+          { "$ref": "#/components/parameters/q" },
+          { "$ref": "#/components/parameters/sort" }
         ],
         "responses": {
           "200": {
@@ -681,18 +601,38 @@
         "name": "organizationId",
         "description": "The organization id",
         "required": true,
-        "schema": {
-          "type": "string"
-        }
+        "schema": { "type": "string" }
       },
       "productId": {
         "in": "path",
         "name": "productId",
         "description": "The product id",
         "required": true,
-        "schema": {
-          "type": "string"
-        }
+        "schema": { "type": "string" }
+      },
+      "limit": {
+        "in": "query",
+        "name": "limit",
+        "description": "The number of items to be returned by page",
+        "schema": { "type": "integer", "default": 10 }
+      },
+      "page": {
+        "in": "query",
+        "name": "page",
+        "description": "The page number",
+        "schema": { "type": "integer", "default": 1 }
+      },
+      "q": {
+        "in": "query",
+        "name": "q",
+        "description": "The search regex",
+        "schema": { "type": "string" }
+      },
+      "sort": {
+        "in": "query",
+        "name": "sort",
+        "description": "The sort order",
+        "schema": { "type": "string" }
       }
     },
     "responses": {
