@@ -182,6 +182,13 @@
       "get": {
         "tags": ["Organizations"],
         "description": "List all users who are members of your organization",
+        "parameters": [
+          { "$ref": "#/components/parameters/limit" },
+          { "$ref": "#/components/parameters/page" },
+          { "$ref": "#/components/parameters/q" },
+          { "$ref": "#/components/parameters/sort" },
+          { "$ref": "#/components/parameters/role" }
+        ],
         "responses": {
           "200": {
             "description": "Successful response",
@@ -724,6 +731,12 @@
         "name": "sort",
         "description": "The sort order",
         "schema": { "type": "string" }
+      },
+      "role": {
+        "in": "query",
+        "name": "role",
+        "description": "Filter members by their role",
+        "schema": { "type": "string", "enum": ["owner", "member"] }
       }
     },
     "responses": {
