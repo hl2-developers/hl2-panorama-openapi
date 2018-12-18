@@ -15,8 +15,7 @@
   },
   "servers": [
     {
-      "url": "https://api.hl2.com/panorama/v1",
-      "description": "The production server"
+      "url": "https://api.hl2.com/panorama/v1"
     }
   ],
   "security": [{ "bearerAuth": [] }],
