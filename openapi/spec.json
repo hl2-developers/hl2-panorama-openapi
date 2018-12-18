@@ -178,7 +178,7 @@
     "/organizations/{organizationId}/teams": {
       "parameters": [{ "$ref": "#/components/parameters/organizationId" }],
       "get": {
-        "tags": ["Organizations"],
+        "tags": ["Teams"],
         "description": "List your organization’s teams",
         "parameters": [
           { "$ref": "#/components/parameters/limit" },
@@ -200,7 +200,7 @@
         }
       },
       "post": {
-        "tags": ["Organizations"],
+        "tags": ["Teams"],
         "description": "Create a team for your organization",
         "requestBody": {
           "content": {
@@ -234,7 +234,7 @@
     "/organizations/{organizationId}/products": {
       "parameters": [{ "$ref": "#/components/parameters/organizationId" }],
       "get": {
-        "tags": ["Organizations"],
+        "tags": ["Products"],
         "description": "List the products for your organization. Public products not owned by your organization are not listed",
         "parameters": [
           { "$ref": "#/components/parameters/limit" },
@@ -256,7 +256,7 @@
         }
       },
       "post": {
-        "tags": ["Organizations"],
+        "tags": ["Products"],
         "description": "Create a product for your organization",
         "requestBody": {
           "content": {
