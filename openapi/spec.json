@@ -139,6 +139,7 @@
             }
           },
           "401": { "$ref": "#/components/responses/401" },
+          "404": { "$ref": "#/components/responses/404" },
           "500": { "$ref": "#/components/responses/500" }
         }
       },
@@ -170,6 +171,7 @@
             }
           },
           "401": { "$ref": "#/components/responses/401" },
+          "404": { "$ref": "#/components/responses/404" },
           "422": { "$ref": "#/components/responses/422" },
           "500": { "$ref": "#/components/responses/500" }
         }
@@ -190,6 +192,7 @@
             }
           },
           "401": { "$ref": "#/components/responses/401" },
+          "404": { "$ref": "#/components/responses/404" },
           "500": { "$ref": "#/components/responses/500" }
         }
       }
@@ -221,6 +224,7 @@
         "responses": {
           "204": { "$ref": "#/components/responses/204" },
           "401": { "$ref": "#/components/responses/401" },
+          "404": { "$ref": "#/components/responses/404" },
           "500": { "$ref": "#/components/responses/500" }
         }
       },
@@ -230,6 +234,7 @@
         "responses": {
           "204": { "$ref": "#/components/responses/204" },
           "401": { "$ref": "#/components/responses/401" },
+          "404": { "$ref": "#/components/responses/404" },
           "500": { "$ref": "#/components/responses/500" }
         }
       }
@@ -255,6 +260,7 @@
             }
           },
           "401": { "$ref": "#/components/responses/401" },
+          "404": { "$ref": "#/components/responses/404" },
           "500": { "$ref": "#/components/responses/500" }
         }
       },
@@ -285,6 +291,7 @@
             }
           },
           "401": { "$ref": "#/components/responses/401" },
+          "404": { "$ref": "#/components/responses/404" },
           "422": { "$ref": "#/components/responses/422" },
           "500": { "$ref": "#/components/responses/500" }
         }
@@ -311,6 +318,7 @@
             }
           },
           "401": { "$ref": "#/components/responses/401" },
+          "404": { "$ref": "#/components/responses/404" },
           "500": { "$ref": "#/components/responses/500" }
         }
       },
@@ -345,6 +353,7 @@
             }
           },
           "401": { "$ref": "#/components/responses/401" },
+          "404": { "$ref": "#/components/responses/404" },
           "422": { "$ref": "#/components/responses/422" },
           "500": { "$ref": "#/components/responses/500" }
         }
@@ -392,6 +401,7 @@
             }
           },
           "401": { "$ref": "#/components/responses/401" },
+          "404": { "$ref": "#/components/responses/404" },
           "500": { "$ref": "#/components/responses/500" }
         }
       },
@@ -426,6 +436,7 @@
             }
           },
           "401": { "$ref": "#/components/responses/401" },
+          "404": { "$ref": "#/components/responses/404" },
           "422": { "$ref": "#/components/responses/422" },
           "500": { "$ref": "#/components/responses/500" }
         }
@@ -436,6 +447,7 @@
         "responses": {
           "204": { "$ref": "#/components/responses/204" },
           "401": { "$ref": "#/components/responses/401" },
+          "404": { "$ref": "#/components/responses/404" },
           "500": { "$ref": "#/components/responses/500" }
         }
       }
@@ -728,8 +740,18 @@
           }
         }
       },
+      "404": {
+        "description": "Not Found, the requested resource cannot be found",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      },
       "422": {
-        "description": "Unprocessable Entity, You have sent invalid fields (details are provided in the error body)",
+        "description": "Unprocessable Entity, you have sent invalid fields (details are provided in the error body)",
         "content": {
           "application/json": {
             "schema": {
