@@ -175,6 +175,65 @@
         }
       }
     },
+    "/organizations/{organizationId}/members": {
+      "parameters": [{ "$ref": "#/components/parameters/organizationId" }],
+      "get": {
+        "tags": ["Organizations"],
+        "description": "List all users who are members of your organization",
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Members" }
+              }
+            }
+          },
+          "401": { "$ref": "#/components/responses/401" },
+          "500": { "$ref": "#/components/responses/500" }
+        }
+      }
+    },
+    "/organizations/{organizationId}/members/{memberId}": {
+      "parameters": [
+        { "$ref": "#/components/parameters/organizationId" },
+        { "$ref": "#/components/parameters/memberId" }
+      ],
+      "put": {
+        "tags": ["Organizations"],
+        "description": "Add a member to your organization, or update an existing member",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "role": {
+                    "type": "string",
+                    "enum": ["owner", "member"],
+                    "default": "member"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": { "$ref": "#/components/responses/204" },
+          "401": { "$ref": "#/components/responses/401" },
+          "500": { "$ref": "#/components/responses/500" }
+        }
+      },
+      "delete": {
+        "tags": ["Organizations"],
+        "description": "Remove a member from your organization. This will also remove the member from all the organization’s teams and it will no longer have access to any of the organization’s resources.",
+        "responses": {
+          "204": { "$ref": "#/components/responses/204" },
+          "401": { "$ref": "#/components/responses/401" },
+          "500": { "$ref": "#/components/responses/500" }
+        }
+      }
+    },
     "/organizations/{organizationId}/teams": {
       "parameters": [{ "$ref": "#/components/parameters/organizationId" }],
       "get": {
@@ -449,6 +508,20 @@
   },
   "components": {
     "schemas": {
+      "Members": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "id": { "type": "string" },
+            "type": { "type": "string" },
+            "name": { "type": "string" },
+            "username": { "type": "string" },
+            "gravatarURL": { "type": "string" },
+            "role": { "type": "string" }
+          }
+        }
+      },
       "Accounts": {
         "type": "array",
         "items": {
@@ -595,6 +668,13 @@
       }
     },
     "parameters": {
+      "memberId": {
+        "in": "path",
+        "name": "memberId",
+        "description": "The member account id",
+        "required": true,
+        "schema": { "type": "string" }
+      },
       "organizationId": {
         "in": "path",
         "name": "organizationId",
