@@ -273,7 +273,7 @@
             "in": "query",
             "name": "role",
             "description": "Filter members by their role",
-            "schema": { "type": "string", "enum": ["owner", "member"] }
+            "schema": { "$ref": "#/components/schemas/OrganizationRole" }
           }
         ],
         "responses": {
@@ -305,11 +305,7 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "role": {
-                    "type": "string",
-                    "enum": ["owner", "member"],
-                    "default": "member"
-                  }
+                  "role": { "$ref": "#/components/schemas/OrganizationRole" }
                 }
               }
             }
@@ -667,7 +663,7 @@
             "name": { "type": "string" },
             "username": { "type": "string" },
             "gravatarURL": { "type": "string" },
-            "role": { "type": "string" }
+            "role": { "$ref": "#/components/schemas/OrganizationRole" }
           }
         }
       },
@@ -730,7 +726,7 @@
           "name": { "type": "string" },
           "username": { "type": "string" },
           "email": { "type": "string" },
-          "role": { "type": "string" },
+          "role": { "$ref": "#/components/schemas/OrganizationRole" },
           "type": { "type": "string" },
           "memberCount": { "type": "number" },
           "disabled": { "type": "boolean" },
@@ -821,6 +817,10 @@
             "maximum": 180
           }
         }
+      },
+      "OrganizationRole": {
+        "type": "string",
+        "enum": ["owner", "member"]
       },
       "Error": {
         "type": "object",
