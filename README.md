@@ -6,7 +6,6 @@ The [OpenAPI](https://openapis.org) specification for hl2 Panorama API.
 
 - `format`: format project files with [prettier](https://Prettier.io/)
 - `validate`: validate [OpenAPI](https://openapis.org) specification
-- `editor`: start swagger editor
 
 ## License
 
