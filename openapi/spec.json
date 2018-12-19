@@ -177,6 +177,44 @@
         }
       }
     },
+    "/organizations/{organizationId}/devices": {
+      "get": {
+        "tags": ["Devices"],
+        "description": "List all the devices registered with your organization",
+        "parameters": [
+          { "$ref": "#/components/parameters/organizationId" },
+          { "$ref": "#/components/parameters/limit" },
+          { "$ref": "#/components/parameters/page" },
+          { "$ref": "#/components/parameters/q" },
+          { "$ref": "#/components/parameters/sort" },
+          {
+            "in": "query",
+            "name": "productId",
+            "description": "The device product ID to search for",
+            "schema": { "type": "string" }
+          },
+          {
+            "in": "query",
+            "name": "hasProduct",
+            "description": "Either `true` to filter devices with a product, or `false` to disable this filter",
+            "schema": { "type": "boolean" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Devices" }
+              }
+            }
+          },
+          "401": { "$ref": "#/components/responses/401" },
+          "404": { "$ref": "#/components/responses/404" },
+          "500": { "$ref": "#/components/responses/500" }
+        }
+      }
+    },
     "/organizations/{organizationId}/members": {
       "parameters": [{ "$ref": "#/components/parameters/organizationId" }],
       "get": {
@@ -527,6 +565,27 @@
   },
   "components": {
     "schemas": {
+      "Devices": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "id": { "type": "string" },
+            "serial": { "type": "string" },
+            "name": { "type": "string" },
+            "slug": { "type": "string" },
+            "organizationId": { "type": "string" },
+            "product": {
+              "type": "object",
+              "properties": {
+                "id": { "type": "string" },
+                "organizationId": { "type": "string" }
+              }
+            },
+            "tags": { "type": "array", "items": { "type": "string" } }
+          }
+        }
+      },
       "Members": {
         "type": "array",
         "items": {
