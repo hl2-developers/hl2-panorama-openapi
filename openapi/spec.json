@@ -177,6 +177,65 @@
         }
       }
     },
+    "/organizations/{organizationId}/applications": {
+      "parameters": [{ "$ref": "#/components/parameters/organizationId" }],
+      "get": {
+        "tags": ["Applications"],
+        "description": "List the applications for your organization",
+        "parameters": [
+          { "$ref": "#/components/parameters/limit" },
+          { "$ref": "#/components/parameters/page" },
+          { "$ref": "#/components/parameters/q" },
+          { "$ref": "#/components/parameters/sort" }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Applications" }
+              }
+            }
+          },
+          "401": { "$ref": "#/components/responses/401" },
+          "404": { "$ref": "#/components/responses/404" },
+          "500": { "$ref": "#/components/responses/500" }
+        }
+      },
+      "post": {
+        "tags": ["Applications"],
+        "description": "Create a new application for your organization",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["name"],
+                "properties": {
+                  "name": { "type": "string" },
+                  "description": { "type": "string" },
+                  "hasDashboard": { "type": "boolean" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Application" }
+              }
+            }
+          },
+          "401": { "$ref": "#/components/responses/401" },
+          "404": { "$ref": "#/components/responses/404" },
+          "422": { "$ref": "#/components/responses/422" },
+          "500": { "$ref": "#/components/responses/500" }
+        }
+      }
+    },
     "/organizations/{organizationId}/devices": {
       "get": {
         "tags": ["Devices"],
@@ -255,6 +314,7 @@
           },
           "401": { "$ref": "#/components/responses/401" },
           "404": { "$ref": "#/components/responses/404" },
+          "422": { "$ref": "#/components/responses/422" },
           "500": { "$ref": "#/components/responses/500" }
         }
       }
@@ -610,6 +670,34 @@
   },
   "components": {
     "schemas": {
+      "Applications": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "id": { "type": "string" },
+            "name": { "type": "string" },
+            "slug": { "type": "string" },
+            "organizationId": { "type": "string" },
+            "description": { "type": "string" },
+            "permission": { "type": "string" }
+          }
+        }
+      },
+      "Application": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "name": { "type": "string" },
+          "slug": { "type": "string" },
+          "organizationId": { "type": "string" },
+          "description": { "type": "string" },
+          "permission": { "type": "string" },
+          "hasDashboard": { "type": "boolean" },
+          "createdAt": { "type": "string" },
+          "updatedAt": { "type": "string" }
+        }
+      },
       "Devices": {
         "type": "array",
         "items": {
