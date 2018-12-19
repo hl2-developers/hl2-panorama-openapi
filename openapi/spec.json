@@ -246,64 +246,6 @@
         }
       }
     },
-    "/organizations/{organizationId}/teams": {
-      "parameters": [{ "$ref": "#/components/parameters/organizationId" }],
-      "get": {
-        "tags": ["Teams"],
-        "description": "List your organization’s teams",
-        "parameters": [
-          { "$ref": "#/components/parameters/limit" },
-          { "$ref": "#/components/parameters/page" },
-          { "$ref": "#/components/parameters/q" },
-          { "$ref": "#/components/parameters/sort" }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful response",
-            "content": {
-              "application/json": {
-                "schema": { "$ref": "#/components/schemas/Teams" }
-              }
-            }
-          },
-          "401": { "$ref": "#/components/responses/401" },
-          "404": { "$ref": "#/components/responses/404" },
-          "500": { "$ref": "#/components/responses/500" }
-        }
-      },
-      "post": {
-        "tags": ["Teams"],
-        "description": "Create a team for your organization",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "required": ["name"],
-                "properties": {
-                  "name": { "type": "string" },
-                  "description": { "type": "string" }
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Successful response",
-            "content": {
-              "application/json": {
-                "schema": { "$ref": "#/components/schemas/Team" }
-              }
-            }
-          },
-          "401": { "$ref": "#/components/responses/401" },
-          "404": { "$ref": "#/components/responses/404" },
-          "422": { "$ref": "#/components/responses/422" },
-          "500": { "$ref": "#/components/responses/500" }
-        }
-      }
-    },
     "/organizations/{organizationId}/products": {
       "parameters": [{ "$ref": "#/components/parameters/organizationId" }],
       "get": {
@@ -356,6 +298,64 @@
             "content": {
               "application/json": {
                 "schema": { "$ref": "#/components/schemas/Product" }
+              }
+            }
+          },
+          "401": { "$ref": "#/components/responses/401" },
+          "404": { "$ref": "#/components/responses/404" },
+          "422": { "$ref": "#/components/responses/422" },
+          "500": { "$ref": "#/components/responses/500" }
+        }
+      }
+    },
+    "/organizations/{organizationId}/teams": {
+      "parameters": [{ "$ref": "#/components/parameters/organizationId" }],
+      "get": {
+        "tags": ["Teams"],
+        "description": "List your organization’s teams",
+        "parameters": [
+          { "$ref": "#/components/parameters/limit" },
+          { "$ref": "#/components/parameters/page" },
+          { "$ref": "#/components/parameters/q" },
+          { "$ref": "#/components/parameters/sort" }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Teams" }
+              }
+            }
+          },
+          "401": { "$ref": "#/components/responses/401" },
+          "404": { "$ref": "#/components/responses/404" },
+          "500": { "$ref": "#/components/responses/500" }
+        }
+      },
+      "post": {
+        "tags": ["Teams"],
+        "description": "Create a team for your organization",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["name"],
+                "properties": {
+                  "name": { "type": "string" },
+                  "description": { "type": "string" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Team" }
               }
             }
           },
