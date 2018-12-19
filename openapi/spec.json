@@ -238,13 +238,7 @@
                       "organizationId": { "type": "string" }
                     }
                   },
-                  "location": {
-                    "type": "object",
-                    "properties": {
-                      "lat": { "type": "number" },
-                      "lon": { "type": "number" }
-                    }
-                  }
+                  "location": { "$ref": "#/components/schemas/Location" }
                 }
               }
             }
@@ -652,13 +646,7 @@
             }
           },
           "applicationCount": { "type": "number" },
-          "location": {
-            "type": "object",
-            "properties": {
-              "lat": { "type": "number" },
-              "lon": { "type": "number" }
-            }
-          },
+          "location": { "$ref": "#/components/schemas/Location" },
           "tags": { "type": "array", "items": { "type": "string" } },
           "createdAt": { "type": "string" },
           "updatedAt": { "type": "string" }
@@ -811,6 +799,21 @@
                 }
               }
             }
+          }
+        }
+      },
+      "Location": {
+        "type": "object",
+        "properties": {
+          "lat": {
+            "type": "number",
+            "minimum": -90,
+            "maximum": 90
+          },
+          "lon": {
+            "type": "number",
+            "minimum": -180,
+            "maximum": 180
           }
         }
       },
