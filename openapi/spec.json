@@ -215,6 +215,56 @@
         }
       }
     },
+    "/organizations/{organizationId}/devices/{deviceSerial}": {
+      "post": {
+        "tags": ["Devices"],
+        "description": "Register a device with your organization",
+        "parameters": [
+          { "$ref": "#/components/parameters/organizationId" },
+          { "$ref": "#/components/parameters/deviceSerial" }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": { "type": "string" },
+                  "tags": { "type": "array", "items": { "type": "string" } },
+                  "product": {
+                    "type": "object",
+                    "properties": {
+                      "id": { "type": "string" },
+                      "organizationId": { "type": "string" }
+                    }
+                  },
+                  "location": {
+                    "type": "object",
+                    "properties": {
+                      "lat": { "type": "number" },
+                      "lon": { "type": "number" }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Device" }
+              }
+            }
+          },
+          "401": { "$ref": "#/components/responses/401" },
+          "404": { "$ref": "#/components/responses/404" },
+          "500": { "$ref": "#/components/responses/500" }
+        }
+      }
+    },
     "/organizations/{organizationId}/members": {
       "parameters": [{ "$ref": "#/components/parameters/organizationId" }],
       "get": {
@@ -586,6 +636,34 @@
           }
         }
       },
+      "Device": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "serial": { "type": "string" },
+          "name": { "type": "string" },
+          "slug": { "type": "string" },
+          "organizationId": { "type": "string" },
+          "product": {
+            "type": "object",
+            "properties": {
+              "id": { "type": "string" },
+              "organizationId": { "type": "string" }
+            }
+          },
+          "applicationCount": { "type": "number" },
+          "location": {
+            "type": "object",
+            "properties": {
+              "lat": { "type": "number" },
+              "lon": { "type": "number" }
+            }
+          },
+          "tags": { "type": "array", "items": { "type": "string" } },
+          "createdAt": { "type": "string" },
+          "updatedAt": { "type": "string" }
+        }
+      },
       "Members": {
         "type": "array",
         "items": {
@@ -757,6 +835,13 @@
         "in": "path",
         "name": "organizationId",
         "description": "The organization id",
+        "required": true,
+        "schema": { "type": "string" }
+      },
+      "deviceSerial": {
+        "in": "path",
+        "name": "deviceSerial",
+        "description": "The device serial",
         "required": true,
         "schema": { "type": "string" }
       },
