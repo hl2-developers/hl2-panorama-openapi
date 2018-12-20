@@ -406,7 +406,22 @@
             "description": "Successful response",
             "content": {
               "application/json": {
-                "schema": { "$ref": "#/components/schemas/Members" }
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "allOf": [
+                      { "$ref": "#/components/schemas/Member" },
+                      {
+                        "type": "object",
+                        "properties": {
+                          "role": {
+                            "$ref": "#/components/schemas/OrganizationRole"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
               }
             }
           },
@@ -862,20 +877,6 @@
           "tags": { "type": "array", "items": { "type": "string" } },
           "createdAt": { "type": "string" },
           "updatedAt": { "type": "string" }
-        }
-      },
-      "Members": {
-        "type": "array",
-        "items": {
-          "type": "object",
-          "properties": {
-            "id": { "type": "string" },
-            "type": { "type": "string" },
-            "name": { "type": "string" },
-            "username": { "type": "string" },
-            "gravatarURL": { "type": "string" },
-            "role": { "$ref": "#/components/schemas/OrganizationRole" }
-          }
         }
       },
       "Accounts": {
