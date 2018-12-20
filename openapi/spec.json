@@ -666,6 +666,71 @@
           "500": { "$ref": "#/components/responses/500" }
         }
       }
+    },
+    "/teams/{organizationId}/{teamId}": {
+      "parameters": [
+        { "$ref": "#/components/parameters/organizationId" },
+        { "$ref": "#/components/parameters/teamId" }
+      ],
+      "get": {
+        "tags": ["Teams"],
+        "description": "Get the details of one of your organization’s teams",
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Team" }
+              }
+            }
+          },
+          "401": { "$ref": "#/components/responses/401" },
+          "404": { "$ref": "#/components/responses/404" },
+          "500": { "$ref": "#/components/responses/500" }
+        }
+      },
+      "put": {
+        "tags": ["Teams"],
+        "description": "Update the details of one of your organization’s teams",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["name"],
+                "properties": {
+                  "name": { "type": "string" },
+                  "description": { "type": "string" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Team" }
+              }
+            }
+          },
+          "401": { "$ref": "#/components/responses/401" },
+          "404": { "$ref": "#/components/responses/404" },
+          "422": { "$ref": "#/components/responses/422" },
+          "500": { "$ref": "#/components/responses/500" }
+        }
+      },
+      "delete": {
+        "tags": ["Teams"],
+        "description": "Delete one of your organization’s teams",
+        "responses": {
+          "204": { "$ref": "#/components/responses/204" },
+          "401": { "$ref": "#/components/responses/401" },
+          "404": { "$ref": "#/components/responses/404" },
+          "500": { "$ref": "#/components/responses/500" }
+        }
+      }
     }
   },
   "components": {
@@ -945,6 +1010,13 @@
         "in": "path",
         "name": "productId",
         "description": "The product id",
+        "required": true,
+        "schema": { "type": "string" }
+      },
+      "teamId": {
+        "in": "path",
+        "name": "teamId",
+        "description": "The team id",
         "required": true,
         "schema": { "type": "string" }
       },
