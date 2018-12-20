@@ -562,7 +562,10 @@
             "description": "Successful response",
             "content": {
               "application/json": {
-                "schema": { "$ref": "#/components/schemas/Teams" }
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/TeamInArray" }
+                }
               }
             }
           },
@@ -980,31 +983,6 @@
           "disabled": { "type": "boolean" }
         }
       },
-      "Teams": {
-        "type": "array",
-        "items": {
-          "type": "object",
-          "properties": {
-            "id": { "type": "string" },
-            "name": { "type": "string" },
-            "slug": { "type": "string" },
-            "description": { "type": "string" },
-            "organizationId": { "type": "string" }
-          }
-        }
-      },
-      "Team": {
-        "type": "object",
-        "properties": {
-          "id": { "type": "string" },
-          "name": { "type": "string" },
-          "slug": { "type": "string" },
-          "description": { "type": "string" },
-          "organizationId": { "type": "string" },
-          "createdAt": { "type": "string" },
-          "updatedAt": { "type": "string" }
-        }
-      },
       "Organization": {
         "type": "object",
         "properties": {
@@ -1089,16 +1067,6 @@
           }
         }
       },
-      "ApplicationInArray": {
-        "type": "object",
-        "properties": {
-          "id": { "type": "string" },
-          "name": { "type": "string" },
-          "slug": { "type": "string" },
-          "organizationId": { "type": "string" },
-          "description": { "type": "string" }
-        }
-      },
       "Application": {
         "allOf": [
           { "$ref": "#/components/schemas/ApplicationInArray" },
@@ -1114,6 +1082,16 @@
             }
           }
         ]
+      },
+      "ApplicationInArray": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "name": { "type": "string" },
+          "slug": { "type": "string" },
+          "organizationId": { "type": "string" },
+          "description": { "type": "string" }
+        }
       },
       "ApplicationPermission": {
         "type": "string",
@@ -1147,6 +1125,28 @@
       "OrganizationRole": {
         "type": "string",
         "enum": ["owner", "member"]
+      },
+      "Team": {
+        "allOf": [
+          { "$ref": "#/components/schemas/TeamInArray" },
+          {
+            "type": "object",
+            "properties": {
+              "createdAt": { "type": "string" },
+              "updatedAt": { "type": "string" }
+            }
+          }
+        ]
+      },
+      "TeamInArray": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "name": { "type": "string" },
+          "slug": { "type": "string" },
+          "description": { "type": "string" },
+          "organizationId": { "type": "string" }
+        }
       },
       "Error": {
         "type": "object",
