@@ -2,7 +2,7 @@
   "openapi": "3.0.2",
   "info": {
     "title": "hl2 Panorama API",
-    "description": "Welcome to the hl2 Panorama API specification. We will commit ourselves to support the library and maintain backwards compatibility in the future, but we reserve the right to make incompatible changes when necessary. If you experience any issues, contact support.",
+    "description": "Welcome to the hl2 Panorama API specification. We will commit ourselves to support the library and maintain backwards compatibility in the future, but we reserve the right to make incompatible changes when necessary. If you experience any issues, contact support",
     "version": "v1",
     "contact": {
       "name": "API support",
@@ -475,7 +475,7 @@
       },
       "delete": {
         "tags": ["Organizations"],
-        "description": "Remove a member from your organization. This will also remove the member from all the organization’s teams and it will no longer have access to any of the organization’s resources.",
+        "description": "Remove a member from your organization. This will also remove the member from all the organization’s teams and it will no longer have access to any of the organization’s resources",
         "responses": {
           "204": { "$ref": "#/components/responses/204" },
           "401": { "$ref": "#/components/responses/401" },
