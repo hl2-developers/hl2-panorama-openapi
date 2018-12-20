@@ -321,8 +321,8 @@
         "tags": ["Devices"],
         "description": "List all the devices registered with your organization",
         "parameters": [
-          { "$ref": "#/components/parameters/organizationId" },
           { "$ref": "#/components/parameters/limit" },
+          { "$ref": "#/components/parameters/organizationId" },
           { "$ref": "#/components/parameters/page" },
           { "$ref": "#/components/parameters/q" },
           { "$ref": "#/components/parameters/sort" },
@@ -359,8 +359,8 @@
         "tags": ["Devices"],
         "description": "Register a device with your organization",
         "parameters": [
-          { "$ref": "#/components/parameters/organizationId" },
-          { "$ref": "#/components/parameters/deviceSerial" }
+          { "$ref": "#/components/parameters/deviceSerial" },
+          { "$ref": "#/components/parameters/organizationId" }
         ],
         "requestBody": {
           "content": {
@@ -448,8 +448,8 @@
     },
     "/organizations/{organizationId}/members/{memberId}": {
       "parameters": [
-        { "$ref": "#/components/parameters/organizationId" },
-        { "$ref": "#/components/parameters/memberId" }
+        { "$ref": "#/components/parameters/memberId" },
+        { "$ref": "#/components/parameters/organizationId" }
       ],
       "put": {
         "tags": ["Organizations"],
@@ -807,10 +807,10 @@
     },
     "/teams/{organizationId}/{teamId}/applications/{applicationId}": {
       "parameters": [
-        { "$ref": "#/components/parameters/organizationId" },
-        { "$ref": "#/components/parameters/teamId" },
+        { "$ref": "#/components/parameters/applicationId" },
         { "$ref": "#/components/parameters/memberId" },
-        { "$ref": "#/components/parameters/applicationId" }
+        { "$ref": "#/components/parameters/organizationId" },
+        { "$ref": "#/components/parameters/teamId" }
       ],
       "put": {
         "tags": ["Teams"],
@@ -882,9 +882,9 @@
     },
     "/teams/{organizationId}/{teamId}/members/{memberId}": {
       "parameters": [
+        { "$ref": "#/components/parameters/memberId" },
         { "$ref": "#/components/parameters/organizationId" },
-        { "$ref": "#/components/parameters/teamId" },
-        { "$ref": "#/components/parameters/memberId" }
+        { "$ref": "#/components/parameters/teamId" }
       ],
       "put": {
         "tags": ["Teams"],
@@ -1172,6 +1172,12 @@
         "required": true,
         "schema": { "type": "string" }
       },
+      "limit": {
+        "in": "query",
+        "name": "limit",
+        "description": "The number of items to be returned by page",
+        "schema": { "type": "integer", "default": 10 }
+      },
       "memberId": {
         "in": "path",
         "name": "memberId",
@@ -1186,31 +1192,18 @@
         "required": true,
         "schema": { "type": "string" }
       },
+      "page": {
+        "in": "query",
+        "name": "page",
+        "description": "The page number",
+        "schema": { "type": "integer", "default": 1 }
+      },
       "productId": {
         "in": "path",
         "name": "productId",
         "description": "The product id",
         "required": true,
         "schema": { "type": "string" }
-      },
-      "teamId": {
-        "in": "path",
-        "name": "teamId",
-        "description": "The team id",
-        "required": true,
-        "schema": { "type": "string" }
-      },
-      "limit": {
-        "in": "query",
-        "name": "limit",
-        "description": "The number of items to be returned by page",
-        "schema": { "type": "integer", "default": 10 }
-      },
-      "page": {
-        "in": "query",
-        "name": "page",
-        "description": "The page number",
-        "schema": { "type": "integer", "default": 1 }
       },
       "q": {
         "in": "query",
@@ -1222,6 +1215,13 @@
         "in": "query",
         "name": "sort",
         "description": "The sort order",
+        "schema": { "type": "string" }
+      },
+      "teamId": {
+        "in": "path",
+        "name": "teamId",
+        "description": "The team id",
+        "required": true,
         "schema": { "type": "string" }
       }
     },
