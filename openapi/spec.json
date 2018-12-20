@@ -124,6 +124,71 @@
         }
       }
     },
+    "/help/languages": {
+      "get": {
+        "tags": ["Help"],
+        "description": "Returns the supported languages",
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "code": {
+                        "type": "string"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "nativeName": {
+                        "type": "string"
+                      }
+                    },
+                    "example": {
+                      "code": "en",
+                      "name": "English",
+                      "nativeName": "English"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": { "$ref": "#/components/responses/401" },
+          "429": { "$ref": "#/components/responses/429" },
+          "500": { "$ref": "#/components/responses/500" }
+        }
+      }
+    },
+    "/help/timezones": {
+      "get": {
+        "tags": ["Help"],
+        "description": "Returns the supported timezones",
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "example": "Africa/Abidjan"
+                  }
+                }
+              }
+            }
+          },
+          "401": { "$ref": "#/components/responses/401" },
+          "429": { "$ref": "#/components/responses/429" },
+          "500": { "$ref": "#/components/responses/500" }
+        }
+      }
+    },
     "/organizations/{organizationId}": {
       "parameters": [{ "$ref": "#/components/parameters/organizationId" }],
       "get": {
@@ -598,71 +663,6 @@
           "204": { "$ref": "#/components/responses/204" },
           "401": { "$ref": "#/components/responses/401" },
           "404": { "$ref": "#/components/responses/404" },
-          "500": { "$ref": "#/components/responses/500" }
-        }
-      }
-    },
-    "/help/languages": {
-      "get": {
-        "tags": ["Help"],
-        "description": "Returns the supported languages",
-        "responses": {
-          "200": {
-            "description": "Successful response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "code": {
-                        "type": "string"
-                      },
-                      "name": {
-                        "type": "string"
-                      },
-                      "nativeName": {
-                        "type": "string"
-                      }
-                    },
-                    "example": {
-                      "code": "en",
-                      "name": "English",
-                      "nativeName": "English"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "401": { "$ref": "#/components/responses/401" },
-          "429": { "$ref": "#/components/responses/429" },
-          "500": { "$ref": "#/components/responses/500" }
-        }
-      }
-    },
-    "/help/timezones": {
-      "get": {
-        "tags": ["Help"],
-        "description": "Returns the supported timezones",
-        "responses": {
-          "200": {
-            "description": "Successful response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "type": "string",
-                    "example": "Africa/Abidjan"
-                  }
-                }
-              }
-            }
-          },
-          "401": { "$ref": "#/components/responses/401" },
-          "429": { "$ref": "#/components/responses/429" },
           "500": { "$ref": "#/components/responses/500" }
         }
       }
