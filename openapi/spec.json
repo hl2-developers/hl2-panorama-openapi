@@ -258,7 +258,22 @@
             "description": "Successful response",
             "content": {
               "application/json": {
-                "schema": { "$ref": "#/components/schemas/Applications" }
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "allOf": [
+                      { "$ref": "#/components/schemas/ApplicationInArray" },
+                      {
+                        "type": "object",
+                        "properties": {
+                          "permission": {
+                            "$ref": "#/components/schemas/ApplicationPermission"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
               }
             }
           },
@@ -747,6 +762,49 @@
         }
       }
     },
+    "/teams/{organizationId}/{teamId}/applications": {
+      "parameters": [
+        { "$ref": "#/components/parameters/organizationId" },
+        { "$ref": "#/components/parameters/teamId" }
+      ],
+      "get": {
+        "tags": ["Teams"],
+        "description": "List the applications of one of your organization’s teams",
+        "parameters": [
+          { "$ref": "#/components/parameters/limit" },
+          { "$ref": "#/components/parameters/page" },
+          { "$ref": "#/components/parameters/sort" }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "allOf": [
+                      { "$ref": "#/components/schemas/ApplicationInArray" },
+                      {
+                        "type": "object",
+                        "properties": {
+                          "permission": {
+                            "$ref": "#/components/schemas/ApplicationPermission"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "401": { "$ref": "#/components/responses/401" },
+          "404": { "$ref": "#/components/responses/404" },
+          "500": { "$ref": "#/components/responses/500" }
+        }
+      }
+    },
     "/teams/{organizationId}/{teamId}/members": {
       "parameters": [
         { "$ref": "#/components/parameters/organizationId" },
@@ -808,34 +866,6 @@
   },
   "components": {
     "schemas": {
-      "Applications": {
-        "type": "array",
-        "items": {
-          "type": "object",
-          "properties": {
-            "id": { "type": "string" },
-            "name": { "type": "string" },
-            "slug": { "type": "string" },
-            "organizationId": { "type": "string" },
-            "description": { "type": "string" },
-            "permission": { "type": "string" }
-          }
-        }
-      },
-      "Application": {
-        "type": "object",
-        "properties": {
-          "id": { "type": "string" },
-          "name": { "type": "string" },
-          "slug": { "type": "string" },
-          "organizationId": { "type": "string" },
-          "description": { "type": "string" },
-          "permission": { "type": "string" },
-          "hasDashboard": { "type": "boolean" },
-          "createdAt": { "type": "string" },
-          "updatedAt": { "type": "string" }
-        }
-      },
       "Devices": {
         "type": "array",
         "items": {
@@ -1014,6 +1044,36 @@
             }
           }
         }
+      },
+      "ApplicationInArray": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "name": { "type": "string" },
+          "slug": { "type": "string" },
+          "organizationId": { "type": "string" },
+          "description": { "type": "string" }
+        }
+      },
+      "Application": {
+        "allOf": [
+          { "$ref": "#/components/schemas/ApplicationInArray" },
+          {
+            "type": "object",
+            "properties": {
+              "createdAt": { "type": "string" },
+              "updatedAt": { "type": "string" },
+              "hasDashboard": { "type": "boolean" },
+              "permission": {
+                "$ref": "#/components/schemas/ApplicationPermission"
+              }
+            }
+          }
+        ]
+      },
+      "ApplicationPermission": {
+        "type": "string",
+        "enum": ["write", "read"]
       },
       "Location": {
         "type": "object",
