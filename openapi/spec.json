@@ -805,6 +805,50 @@
         }
       }
     },
+    "/teams/{organizationId}/{teamId}/applications/{applicationId}": {
+      "parameters": [
+        { "$ref": "#/components/parameters/organizationId" },
+        { "$ref": "#/components/parameters/teamId" },
+        { "$ref": "#/components/parameters/memberId" },
+        { "$ref": "#/components/parameters/applicationId" }
+      ],
+      "put": {
+        "tags": ["Teams"],
+        "description": "Add an application to one of your organization’s teams, or change the team application’s permission",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["permission"],
+                "properties": {
+                  "permission": {
+                    "$ref": "#/components/schemas/ApplicationPermission"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": { "$ref": "#/components/responses/204" },
+          "401": { "$ref": "#/components/responses/401" },
+          "404": { "$ref": "#/components/responses/404" },
+          "422": { "$ref": "#/components/responses/422" },
+          "500": { "$ref": "#/components/responses/500" }
+        }
+      },
+      "delete": {
+        "tags": ["Teams"],
+        "description": "Remove an application from one of your organization’s teams",
+        "responses": {
+          "204": { "$ref": "#/components/responses/204" },
+          "401": { "$ref": "#/components/responses/401" },
+          "404": { "$ref": "#/components/responses/404" },
+          "500": { "$ref": "#/components/responses/500" }
+        }
+      }
+    },
     "/teams/{organizationId}/{teamId}/members": {
       "parameters": [
         { "$ref": "#/components/parameters/organizationId" },
@@ -1114,6 +1158,13 @@
       }
     },
     "parameters": {
+      "applicationId": {
+        "in": "path",
+        "name": "applicationId",
+        "description": "The application id",
+        "required": true,
+        "schema": { "type": "string" }
+      },
       "deviceSerial": {
         "in": "path",
         "name": "deviceSerial",
