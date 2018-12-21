@@ -641,7 +641,10 @@
             "description": "Successful response",
             "content": {
               "application/json": {
-                "schema": { "$ref": "#/components/schemas/Products" }
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/ProductInArray" }
+                }
               }
             }
           },
@@ -766,7 +769,10 @@
             "description": "A list of products",
             "content": {
               "application/json": {
-                "schema": { "$ref": "#/components/schemas/Products" }
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/ProductInArray" }
+                }
               }
             }
           },
@@ -1052,75 +1058,6 @@
   },
   "components": {
     "schemas": {
-      "Products": {
-        "type": "array",
-        "items": {
-          "type": "object",
-          "properties": {
-            "id": { "type": "string" },
-            "name": { "type": "string" },
-            "slug": { "type": "string" },
-            "version": { "type": "string" },
-            "organizationId": { "type": "string" },
-            "public": { "type": "boolean" }
-          }
-        }
-      },
-      "Product": {
-        "type": "object",
-        "properties": {
-          "id": { "type": "string" },
-          "name": { "type": "string" },
-          "slug": { "type": "string" },
-          "version": { "type": "string" },
-          "organizationId": { "type": "string" },
-          "variables": {
-            "type": "array",
-            "items": { "$ref": "#/components/schemas/ProductVariable" }
-          },
-          "public": { "type": "boolean" },
-          "deviceCount": { "type": "number" },
-          "createdAt": { "type": "string" },
-          "updatedAt": { "type": "string" }
-        }
-      },
-      "ProductVariable": {
-        "type": "array",
-        "items": {
-          "type": "object",
-          "properties": {
-            "name": { "type": "string" },
-            "unit": { "type": "string" },
-            "type": {
-              "type": "string",
-              "enum": [
-                "BOOL",
-                "TXT",
-                "INT16",
-                "INT64",
-                "FLOAT32",
-                "UNINT8",
-                "UNINT16",
-                "UNINT32"
-              ]
-            },
-            "mappings": {
-              "type": "array",
-              "items": {
-                "type": "object",
-                "properties": {
-                  "streamId": { "type": "number" },
-                  "streamType": {
-                    "type": "string",
-                    "enum": ["BIN", "RAW", "TXT"]
-                  },
-                  "varNumber": { "type": "number" }
-                }
-              }
-            }
-          }
-        }
-      },
       "Account": {
         "allOf": [
           { "$ref": "#/components/schemas/AccountInArray" },
@@ -1178,6 +1115,19 @@
           }
         }
       },
+      "Device": {
+        "allOf": [
+          { "$ref": "#/components/schemas/DeviceInArray" },
+          { "$ref": "#/components/schemas/Timestamps" },
+          {
+            "type": "object",
+            "properties": {
+              "applicationCount": { "type": "number" },
+              "location": { "$ref": "#/components/schemas/Location" }
+            }
+          }
+        ]
+      },
       "DeviceInArray": {
         "type": "object",
         "properties": {
@@ -1199,29 +1149,18 @@
           }
         }
       },
-      "Device": {
-        "allOf": [
-          { "$ref": "#/components/schemas/DeviceInArray" },
-          { "$ref": "#/components/schemas/Timestamps" },
-          {
-            "type": "object",
-            "properties": {
-              "applicationCount": { "type": "number" },
-              "location": { "$ref": "#/components/schemas/Location" }
-            }
-          }
-        ]
-      },
       "Location": {
         "type": "object",
         "properties": {
           "lat": {
             "type": "number",
+            "format": "float",
             "minimum": -90,
             "maximum": 90
           },
           "lon": {
             "type": "number",
+            "format": "float",
             "minimum": -180,
             "maximum": 180
           }
@@ -1244,7 +1183,7 @@
             "type": "object",
             "properties": {
               "role": { "$ref": "#/components/schemas/OrganizationRole" },
-              "memberCount": { "type": "number" }
+              "memberCount": { "type": "integer", "format": "int32" }
             }
           }
         ]
@@ -1252,6 +1191,68 @@
       "OrganizationRole": {
         "type": "string",
         "enum": ["owner", "member"]
+      },
+      "Product": {
+        "allOf": [
+          { "$ref": "#/components/schemas/ProductInArray" },
+          { "$ref": "#/components/schemas/Timestamps" },
+          {
+            "type": "object",
+            "properties": {
+              "variables": {
+                "type": "array",
+                "items": { "$ref": "#/components/schemas/ProductVariable" }
+              },
+              "deviceCount": { "type": "integer", "format": "int32" }
+            }
+          }
+        ]
+      },
+      "ProductInArray": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "name": { "type": "string" },
+          "slug": { "type": "string" },
+          "version": { "type": "string" },
+          "organizationId": { "type": "string" },
+          "public": { "type": "boolean" }
+        }
+      },
+      "ProductVariable": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "unit": { "type": "string" },
+          "type": {
+            "type": "string",
+            "enum": [
+              "BOOL",
+              "TXT",
+              "INT16",
+              "INT64",
+              "FLOAT32",
+              "UNINT8",
+              "UNINT16",
+              "UNINT32"
+            ]
+          },
+          "mappings": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/ProductVariableMapping" }
+          }
+        }
+      },
+      "ProductVariableMapping": {
+        "type": "object",
+        "properties": {
+          "streamId": { "type": "integer", "format": "int32" },
+          "streamType": {
+            "type": "string",
+            "enum": ["BIN", "RAW", "TXT"]
+          },
+          "varNumber": { "type": "integer", "format": "int32" }
+        }
       },
       "Team": {
         "allOf": [
@@ -1272,16 +1273,14 @@
       "Timestamps": {
         "type": "object",
         "properties": {
-          "createdAt": { "type": "string" },
-          "updatedAt": { "type": "string" }
+          "createdAt": { "type": "string", "format": "date-time" },
+          "updatedAt": { "type": "string", "format": "date-time" }
         }
       },
       "Error": {
         "type": "object",
         "properties": {
-          "message": {
-            "type": "string"
-          }
+          "message": { "type": "string" }
         }
       }
     },
