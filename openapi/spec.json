@@ -2,7 +2,7 @@
   "openapi": "3.0.2",
   "info": {
     "title": "hl2 Panorama API",
-    "description": "Welcome to the hl2 Panorama API specification. We will commit ourselves to support the library and maintain backwards compatibility in the future, but we reserve the right to make incompatible changes when necessary. If you experience any issues, contact support",
+    "description": "Welcome to the hl2 Panorama API specification. We will commit ourselves to support the library and maintain backwards compatibility in the future, but we reserve the right to make incompatible changes when necessary. If you experience any issues, please contact support",
     "version": "v1",
     "contact": {
       "name": "API support",
@@ -103,7 +103,7 @@
     "/accounts": {
       "get": {
         "tags": ["Accounts"],
-        "description": "List all the active users of the hl2 Panorama platform, or search for one using their name or username. This is useful to figure out their IDs to add them to your organization",
+        "description": "List all the active users of the hl2 Panorama platform, or search for one using their name or username. This is useful to figure out user IDs to add them to your organization",
         "parameters": [
           { "$ref": "#/components/parameters/limit" },
           { "$ref": "#/components/parameters/page" },
@@ -275,7 +275,7 @@
     "/help/languages": {
       "get": {
         "tags": ["Help"],
-        "description": "Returns the supported languages",
+        "description": "Return the supported languages",
         "responses": {
           "200": {
             "description": "Successful response",
@@ -315,7 +315,7 @@
     "/help/timezones": {
       "get": {
         "tags": ["Help"],
-        "description": "Returns the supported timezones",
+        "description": "Return the supported timezones",
         "responses": {
           "200": {
             "description": "Successful response",
@@ -630,7 +630,7 @@
       },
       "delete": {
         "tags": ["Organizations"],
-        "description": "Remove a member from your organization. This will also remove the member from all the organization’s teams and it will no longer have access to any of the organization’s resources",
+        "description": "Remove a member from your organization. This will also remove the member from all the organization’s teams and they will no longer have access to any of the organization’s resources",
         "responses": {
           "204": { "$ref": "#/components/responses/204" },
           "401": { "$ref": "#/components/responses/401" },
@@ -859,7 +859,7 @@
       },
       "delete": {
         "tags": ["Products"],
-        "description": "Delete one of your organization’s products. This will only be possible if the product is not public, and not used by any device",
+        "description": "Delete one of your organization’s products. This will only be possible if the product is neither public nor used by any device",
         "responses": {
           "204": { "$ref": "#/components/responses/204" },
           "401": { "$ref": "#/components/responses/401" },
@@ -1337,14 +1337,14 @@
       "applicationId": {
         "in": "path",
         "name": "applicationId",
-        "description": "The application id",
+        "description": "The application ID",
         "required": true,
         "schema": { "type": "string" }
       },
       "deviceId": {
         "in": "path",
         "name": "deviceId",
-        "description": "The device id",
+        "description": "The device ID",
         "required": true,
         "schema": { "type": "string" }
       },
@@ -1364,14 +1364,14 @@
       "memberId": {
         "in": "path",
         "name": "memberId",
-        "description": "The member account id",
+        "description": "The member account ID",
         "required": true,
         "schema": { "type": "string" }
       },
       "organizationId": {
         "in": "path",
         "name": "organizationId",
-        "description": "The organization id",
+        "description": "The organization ID",
         "required": true,
         "schema": { "type": "string" }
       },
@@ -1384,7 +1384,7 @@
       "productId": {
         "in": "path",
         "name": "productId",
-        "description": "The product id",
+        "description": "The product ID",
         "required": true,
         "schema": { "type": "string" }
       },
@@ -1403,7 +1403,7 @@
       "teamId": {
         "in": "path",
         "name": "teamId",
-        "description": "The team id",
+        "description": "The team ID",
         "required": true,
         "schema": { "type": "string" }
       },
