@@ -975,7 +975,6 @@
     "/teams/{organizationId}/{teamId}/applications/{applicationId}": {
       "parameters": [
         { "$ref": "#/components/parameters/applicationId" },
-        { "$ref": "#/components/parameters/memberId" },
         { "$ref": "#/components/parameters/organizationId" },
         { "$ref": "#/components/parameters/teamId" }
       ],
