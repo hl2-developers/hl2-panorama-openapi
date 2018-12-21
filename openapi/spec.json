@@ -1262,12 +1262,22 @@
       "ProductVariableMapping": {
         "type": "object",
         "properties": {
-          "streamId": { "type": "integer", "format": "int32" },
+          "streamId": {
+            "type": "integer",
+            "format": "int32",
+            "minimum": 1,
+            "maximum": 16
+          },
           "streamType": {
             "type": "string",
             "enum": ["BIN", "RAW", "TXT"]
           },
-          "varNumber": { "type": "integer", "format": "int32" }
+          "varNumber": {
+            "type": "integer",
+            "format": "int32",
+            "minimum": 1,
+            "maximum": 32
+          }
         }
       },
       "Team": {
