@@ -158,12 +158,13 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "object",
-                "required": ["name", "hasDashboard"],
+                "required": ["name", "hasAlerts", "hasDashboard", "hasHooks"],
                 "properties": {
                   "name": { "type": "string" },
                   "description": { "type": "string" },
-                  "hasDashboard": { "type": "boolean" }
+                  "hasAlerts": { "type": "boolean" },
+                  "hasDashboard": { "type": "boolean" },
+                  "hasHooks": { "type": "boolean" }
                 }
               }
             }
@@ -181,6 +182,17 @@
           "401": { "$ref": "#/components/responses/401" },
           "404": { "$ref": "#/components/responses/404" },
           "422": { "$ref": "#/components/responses/422" },
+          "429": { "$ref": "#/components/responses/429" },
+          "500": { "$ref": "#/components/responses/500" }
+        }
+      },
+      "delete": {
+        "tags": ["Applications"],
+        "description": "Delete one of your organization’s applications",
+        "responses": {
+          "204": { "$ref": "#/components/responses/204" },
+          "401": { "$ref": "#/components/responses/401" },
+          "404": { "$ref": "#/components/responses/404" },
           "429": { "$ref": "#/components/responses/429" },
           "500": { "$ref": "#/components/responses/500" }
         }
@@ -421,11 +433,13 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": ["name"],
+                "required": ["name", "hasAlerts", "hasDashboard", "hasHooks"],
                 "properties": {
                   "name": { "type": "string" },
                   "description": { "type": "string" },
-                  "hasDashboard": { "type": "boolean" }
+                  "hasAlerts": { "type": "boolean" },
+                  "hasDashboard": { "type": "boolean" },
+                  "hasHooks": { "type": "boolean" }
                 }
               }
             }
@@ -1091,7 +1105,9 @@
           {
             "type": "object",
             "properties": {
-              "hasDashboard": { "type": "boolean" }
+              "hasAlerts": { "type": "boolean" },
+              "hasDashboard": { "type": "boolean" },
+              "hasHooks": { "type": "boolean" }
             }
           }
         ]
