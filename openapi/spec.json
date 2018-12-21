@@ -130,6 +130,24 @@
         { "$ref": "#/components/parameters/deviceId" },
         { "$ref": "#/components/parameters/organizationId" }
       ],
+      "get": {
+        "tags": ["Devices"],
+        "description": "Get the details for a device registered with your organization",
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Device" }
+              }
+            }
+          },
+          "401": { "$ref": "#/components/responses/401" },
+          "404": { "$ref": "#/components/responses/404" },
+          "429": { "$ref": "#/components/responses/429" },
+          "500": { "$ref": "#/components/responses/500" }
+        }
+      },
       "delete": {
         "tags": ["Devices"],
         "description": "Remove the device from your organization. This will not be possible if the device is linked to any application.",
@@ -366,7 +384,10 @@
             "description": "Successful response",
             "content": {
               "application/json": {
-                "schema": { "$ref": "#/components/schemas/Devices" }
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/DeviceInArray" }
+                }
               }
             }
           },
@@ -938,49 +959,6 @@
   },
   "components": {
     "schemas": {
-      "Devices": {
-        "type": "array",
-        "items": {
-          "type": "object",
-          "properties": {
-            "id": { "type": "string" },
-            "serial": { "type": "string" },
-            "name": { "type": "string" },
-            "slug": { "type": "string" },
-            "organizationId": { "type": "string" },
-            "product": {
-              "type": "object",
-              "properties": {
-                "id": { "type": "string" },
-                "organizationId": { "type": "string" }
-              }
-            },
-            "tags": { "type": "array", "items": { "type": "string" } }
-          }
-        }
-      },
-      "Device": {
-        "type": "object",
-        "properties": {
-          "id": { "type": "string" },
-          "serial": { "type": "string" },
-          "name": { "type": "string" },
-          "slug": { "type": "string" },
-          "organizationId": { "type": "string" },
-          "product": {
-            "type": "object",
-            "properties": {
-              "id": { "type": "string" },
-              "organizationId": { "type": "string" }
-            }
-          },
-          "applicationCount": { "type": "number" },
-          "location": { "$ref": "#/components/schemas/Location" },
-          "tags": { "type": "array", "items": { "type": "string" } },
-          "createdAt": { "type": "string" },
-          "updatedAt": { "type": "string" }
-        }
-      },
       "Accounts": {
         "type": "array",
         "items": {
@@ -1124,6 +1102,40 @@
             "enum": ["write", "read"]
           }
         }
+      },
+      "DeviceInArray": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "serial": { "type": "string" },
+          "name": { "type": "string" },
+          "slug": { "type": "string" },
+          "organizationId": { "type": "string" },
+          "product": {
+            "type": "object",
+            "properties": {
+              "id": { "type": "string" },
+              "organizationId": { "type": "string" }
+            }
+          },
+          "tags": {
+            "type": "array",
+            "items": { "type": "string" }
+          }
+        }
+      },
+      "Device": {
+        "allOf": [
+          { "$ref": "#/components/schemas/DeviceInArray" },
+          { "$ref": "#/components/schemas/Timestamps" },
+          {
+            "type": "object",
+            "properties": {
+              "applicationCount": { "type": "number" },
+              "location": { "$ref": "#/components/schemas/Location" }
+            }
+          }
+        ]
       },
       "Location": {
         "type": "object",
