@@ -125,6 +125,64 @@
         }
       }
     },
+    "/applications/{organizationId}/{applicationId}": {
+      "parameters": [
+        { "$ref": "#/components/parameters/applicationId" },
+        { "$ref": "#/components/parameters/organizationId" }
+      ],
+      "get": {
+        "tags": ["Applications"],
+        "description": "Get the details for one of your organization’s applications",
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Application" }
+              }
+            }
+          },
+          "401": { "$ref": "#/components/responses/401" },
+          "404": { "$ref": "#/components/responses/404" },
+          "429": { "$ref": "#/components/responses/429" },
+          "500": { "$ref": "#/components/responses/500" }
+        }
+      },
+      "put": {
+        "tags": ["Applications"],
+        "description": "Update one of your organization’s applications",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["name", "hasDashboard"],
+                "properties": {
+                  "name": { "type": "string" },
+                  "description": { "type": "string" },
+                  "hasDashboard": { "type": "boolean" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Application" }
+              }
+            }
+          },
+          "401": { "$ref": "#/components/responses/401" },
+          "404": { "$ref": "#/components/responses/404" },
+          "422": { "$ref": "#/components/responses/422" },
+          "429": { "$ref": "#/components/responses/429" },
+          "500": { "$ref": "#/components/responses/500" }
+        }
+      }
+    },
     "/devices/{organizationId}/{deviceId}": {
       "parameters": [
         { "$ref": "#/components/parameters/deviceId" },
@@ -340,14 +398,7 @@
                   "items": {
                     "allOf": [
                       { "$ref": "#/components/schemas/ApplicationInArray" },
-                      {
-                        "type": "object",
-                        "properties": {
-                          "permission": {
-                            "$ref": "#/components/schemas/ApplicationPermission"
-                          }
-                        }
-                      }
+                      { "$ref": "#/components/schemas/ApplicationPermission" }
                     ]
                   }
                 }
