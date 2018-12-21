@@ -116,7 +116,10 @@
             "description": "Successful response",
             "content": {
               "application/json": {
-                "schema": { "$ref": "#/components/schemas/Accounts" }
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/AccountInArray" }
+                }
               }
             }
           },
@@ -1049,48 +1052,6 @@
   },
   "components": {
     "schemas": {
-      "Accounts": {
-        "type": "array",
-        "items": {
-          "type": "object",
-          "properties": {
-            "id": { "type": "string" },
-            "type": { "type": "string" },
-            "name": { "type": "string" },
-            "username": { "type": "string" },
-            "gravatarURL": { "type": "string" }
-          }
-        }
-      },
-      "Account": {
-        "type": "object",
-        "properties": {
-          "id": { "type": "string" },
-          "email": { "type": "string" },
-          "username": { "type": "string" },
-          "name": { "type": "string" },
-          "type": { "type": "string" },
-          "gravatarURL": { "type": "string" },
-          "createdAt": { "type": "string" },
-          "updatedAt": { "type": "string" },
-          "disabled": { "type": "boolean" }
-        }
-      },
-      "Organization": {
-        "type": "object",
-        "properties": {
-          "id": { "type": "string" },
-          "name": { "type": "string" },
-          "username": { "type": "string" },
-          "email": { "type": "string" },
-          "role": { "$ref": "#/components/schemas/OrganizationRole" },
-          "type": { "type": "string" },
-          "memberCount": { "type": "number" },
-          "disabled": { "type": "boolean" },
-          "createdAt": { "type": "string" },
-          "updatedAt": { "type": "string" }
-        }
-      },
       "Products": {
         "type": "array",
         "items": {
@@ -1158,6 +1119,30 @@
               }
             }
           }
+        }
+      },
+      "Account": {
+        "allOf": [
+          { "$ref": "#/components/schemas/AccountInArray" },
+          { "$ref": "#/components/schemas/Timestamps" },
+          {
+            "type": "object",
+            "properties": {
+              "email": { "type": "string" },
+              "type": { "type": "string" },
+              "disabled": { "type": "boolean" }
+            }
+          }
+        ]
+      },
+      "AccountInArray": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "type": { "type": "string" },
+          "name": { "type": "string" },
+          "username": { "type": "string" },
+          "gravatarURL": { "type": "string" }
         }
       },
       "Application": {
@@ -1251,6 +1236,18 @@
           "username": { "type": "string" },
           "gravatarURL": { "type": "string" }
         }
+      },
+      "Organization": {
+        "allOf": [
+          { "$ref": "#/components/schemas/Account" },
+          {
+            "type": "object",
+            "properties": {
+              "role": { "$ref": "#/components/schemas/OrganizationRole" },
+              "memberCount": { "type": "number" }
+            }
+          }
+        ]
       },
       "OrganizationRole": {
         "type": "string",
