@@ -76,9 +76,8 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": ["email", "username"],
+                "required": ["username"],
                 "properties": {
-                  "email": { "type": "string" },
                   "name": { "type": "string" },
                   "username": { "type": "string" }
                 }
@@ -109,7 +108,8 @@
           { "$ref": "#/components/parameters/limit" },
           { "$ref": "#/components/parameters/page" },
           { "$ref": "#/components/parameters/q" },
-          { "$ref": "#/components/parameters/sort" }
+          { "$ref": "#/components/parameters/sort" },
+          { "$ref": "#/components/parameters/type" }
         ],
         "responses": {
           "200": {
@@ -353,9 +353,8 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": ["email", "username"],
+                "required": ["username"],
                 "properties": {
-                  "email": { "type": "string" },
                   "name": { "type": "string" },
                   "username": { "type": "string" }
                 }
@@ -599,7 +598,9 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "role": { "$ref": "#/components/schemas/OrganizationRole" }
+                  "role": {
+                    "$ref": "#/components/schemas/OrganizationRole"
+                  }
                 }
               }
             }
@@ -1076,7 +1077,7 @@
         "type": "object",
         "properties": {
           "id": { "type": "string" },
-          "type": { "type": "string" },
+          "type": { "type": "string", "enum": ["organization", "user"] },
           "name": { "type": "string" },
           "username": { "type": "string" },
           "gravatarURL": { "type": "string" }
@@ -1190,7 +1191,7 @@
       },
       "OrganizationRole": {
         "type": "string",
-        "enum": ["owner", "member"]
+        "enum": ["member", "owner"]
       },
       "Product": {
         "allOf": [
@@ -1357,6 +1358,12 @@
         "description": "The team id",
         "required": true,
         "schema": { "type": "string" }
+      },
+      "type": {
+        "in": "query",
+        "name": "type",
+        "description": "The account type",
+        "schema": { "type": "string", "enum": ["user", "organization"] }
       }
     },
     "responses": {
