@@ -130,8 +130,8 @@
     },
     "/applications/{organizationId}/{applicationId}": {
       "parameters": [
-        { "$ref": "#/components/parameters/applicationId" },
-        { "$ref": "#/components/parameters/organizationId" }
+        { "$ref": "#/components/parameters/organizationId" },
+        { "$ref": "#/components/parameters/applicationId" }
       ],
       "get": {
         "tags": ["Applications"],
@@ -200,8 +200,8 @@
     },
     "/devices/{organizationId}/{deviceId}": {
       "parameters": [
-        { "$ref": "#/components/parameters/deviceId" },
-        { "$ref": "#/components/parameters/organizationId" }
+        { "$ref": "#/components/parameters/organizationId" },
+        { "$ref": "#/components/parameters/deviceId" }
       ],
       "get": {
         "tags": ["Devices"],
@@ -509,8 +509,8 @@
         "tags": ["Devices"],
         "description": "Register a device with your organization",
         "parameters": [
-          { "$ref": "#/components/parameters/deviceSerial" },
-          { "$ref": "#/components/parameters/organizationId" }
+          { "$ref": "#/components/parameters/organizationId" },
+          { "$ref": "#/components/parameters/deviceSerial" }
         ],
         "requestBody": {
           "content": {
@@ -600,8 +600,8 @@
     },
     "/organizations/{organizationId}/members/{memberId}": {
       "parameters": [
-        { "$ref": "#/components/parameters/memberId" },
-        { "$ref": "#/components/parameters/organizationId" }
+        { "$ref": "#/components/parameters/organizationId" },
+        { "$ref": "#/components/parameters/memberId" }
       ],
       "put": {
         "tags": ["Organizations"],
@@ -799,8 +799,8 @@
     },
     "/products/{organizationId}/{productId}": {
       "parameters": [
-        { "$ref": "#/components/parameters/organizationId" },
-        { "$ref": "#/components/parameters/productId" }
+        { "$ref": "#/components/parameters/productId" },
+        { "$ref": "#/components/parameters/organizationId" }
       ],
       "get": {
         "tags": ["Products"],
@@ -870,8 +870,8 @@
     },
     "/teams/{organizationId}/{teamId}": {
       "parameters": [
-        { "$ref": "#/components/parameters/organizationId" },
-        { "$ref": "#/components/parameters/teamId" }
+        { "$ref": "#/components/parameters/teamId" },
+        { "$ref": "#/components/parameters/organizationId" }
       ],
       "get": {
         "tags": ["Teams"],
@@ -937,8 +937,8 @@
     },
     "/teams/{organizationId}/{teamId}/applications": {
       "parameters": [
-        { "$ref": "#/components/parameters/organizationId" },
-        { "$ref": "#/components/parameters/teamId" }
+        { "$ref": "#/components/parameters/teamId" },
+        { "$ref": "#/components/parameters/organizationId" }
       ],
       "get": {
         "tags": ["Teams"],
@@ -974,9 +974,9 @@
     },
     "/teams/{organizationId}/{teamId}/applications/{applicationId}": {
       "parameters": [
-        { "$ref": "#/components/parameters/applicationId" },
         { "$ref": "#/components/parameters/organizationId" },
-        { "$ref": "#/components/parameters/teamId" }
+        { "$ref": "#/components/parameters/teamId" },
+        { "$ref": "#/components/parameters/applicationId" }
       ],
       "put": {
         "tags": ["Teams"],
@@ -1042,9 +1042,9 @@
     },
     "/teams/{organizationId}/{teamId}/members/{memberId}": {
       "parameters": [
-        { "$ref": "#/components/parameters/memberId" },
         { "$ref": "#/components/parameters/organizationId" },
-        { "$ref": "#/components/parameters/teamId" }
+        { "$ref": "#/components/parameters/teamId" },
+        { "$ref": "#/components/parameters/memberId" }
       ],
       "put": {
         "tags": ["Teams"],
