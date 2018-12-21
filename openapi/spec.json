@@ -124,6 +124,22 @@
         }
       }
     },
+    "/devices/{organizationId}/{deviceId}": {
+      "parameters": [
+        { "$ref": "#/components/parameters/deviceId" },
+        { "$ref": "#/components/parameters/organizationId" }
+      ],
+      "delete": {
+        "tags": ["Devices"],
+        "description": "Remove the device from your organization. This will not be possible if the device is linked to any application.",
+        "responses": {
+          "204": { "$ref": "#/components/responses/204" },
+          "401": { "$ref": "#/components/responses/401" },
+          "404": { "$ref": "#/components/responses/404" },
+          "500": { "$ref": "#/components/responses/500" }
+        }
+      }
+    },
     "/help/languages": {
       "get": {
         "tags": ["Help"],
@@ -1151,6 +1167,13 @@
         "in": "path",
         "name": "applicationId",
         "description": "The application id",
+        "required": true,
+        "schema": { "type": "string" }
+      },
+      "deviceId": {
+        "in": "path",
+        "name": "deviceId",
+        "description": "The device id",
         "required": true,
         "schema": { "type": "string" }
       },
