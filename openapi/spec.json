@@ -148,6 +148,45 @@
           "500": { "$ref": "#/components/responses/500" }
         }
       },
+      "put": {
+        "tags": ["Devices"],
+        "description": "Update the details for a device registered with your organization",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": { "type": "string" },
+                  "tags": { "type": "array", "items": { "type": "string" } },
+                  "product": {
+                    "type": "object",
+                    "properties": {
+                      "id": { "type": "string" },
+                      "organizationId": { "type": "string" }
+                    }
+                  },
+                  "location": { "$ref": "#/components/schemas/Location" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Device" }
+              }
+            }
+          },
+          "401": { "$ref": "#/components/responses/401" },
+          "404": { "$ref": "#/components/responses/404" },
+          "429": { "$ref": "#/components/responses/429" },
+          "500": { "$ref": "#/components/responses/500" }
+        }
+      },
       "delete": {
         "tags": ["Devices"],
         "description": "Remove the device from your organization. This will not be possible if the device is linked to any application.",
