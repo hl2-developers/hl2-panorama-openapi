@@ -788,14 +788,7 @@
                   "items": {
                     "allOf": [
                       { "$ref": "#/components/schemas/ApplicationInArray" },
-                      {
-                        "type": "object",
-                        "properties": {
-                          "permission": {
-                            "$ref": "#/components/schemas/ApplicationPermission"
-                          }
-                        }
-                      }
+                      { "$ref": "#/components/schemas/ApplicationPermission" }
                     ]
                   }
                 }
@@ -821,15 +814,7 @@
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": {
-                "type": "object",
-                "required": ["permission"],
-                "properties": {
-                  "permission": {
-                    "$ref": "#/components/schemas/ApplicationPermission"
-                  }
-                }
-              }
+              "schema": { "$ref": "#/components/schemas/ApplicationPermission" }
             }
           }
         },
@@ -1070,15 +1055,12 @@
       "Application": {
         "allOf": [
           { "$ref": "#/components/schemas/ApplicationInArray" },
+          { "$ref": "#/components/schemas/ApplicationPermission" },
+          { "$ref": "#/components/schemas/Timestamps" },
           {
             "type": "object",
             "properties": {
-              "createdAt": { "type": "string" },
-              "updatedAt": { "type": "string" },
-              "hasDashboard": { "type": "boolean" },
-              "permission": {
-                "$ref": "#/components/schemas/ApplicationPermission"
-              }
+              "hasDashboard": { "type": "boolean" }
             }
           }
         ]
@@ -1094,8 +1076,14 @@
         }
       },
       "ApplicationPermission": {
-        "type": "string",
-        "enum": ["write", "read"]
+        "type": "object",
+        "required": ["permission"],
+        "properties": {
+          "permission": {
+            "type": "string",
+            "enum": ["write", "read"]
+          }
+        }
       },
       "Location": {
         "type": "object",
@@ -1129,13 +1117,7 @@
       "Team": {
         "allOf": [
           { "$ref": "#/components/schemas/TeamInArray" },
-          {
-            "type": "object",
-            "properties": {
-              "createdAt": { "type": "string" },
-              "updatedAt": { "type": "string" }
-            }
-          }
+          { "$ref": "#/components/schemas/Timestamps" }
         ]
       },
       "TeamInArray": {
@@ -1146,6 +1128,13 @@
           "slug": { "type": "string" },
           "description": { "type": "string" },
           "organizationId": { "type": "string" }
+        }
+      },
+      "Timestamps": {
+        "type": "object",
+        "properties": {
+          "createdAt": { "type": "string" },
+          "updatedAt": { "type": "string" }
         }
       },
       "Error": {
