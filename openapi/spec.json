@@ -467,8 +467,8 @@
         "tags": ["Devices"],
         "description": "List all the devices registered with your organization",
         "parameters": [
-          { "$ref": "#/components/parameters/limit" },
           { "$ref": "#/components/parameters/organizationId" },
+          { "$ref": "#/components/parameters/limit" },
           { "$ref": "#/components/parameters/page" },
           { "$ref": "#/components/parameters/q" },
           { "$ref": "#/components/parameters/sort" },
@@ -1139,7 +1139,30 @@
             "type": "object",
             "properties": {
               "applicationCount": { "type": "number" },
-              "location": { "$ref": "#/components/schemas/Location" }
+              "location": { "$ref": "#/components/schemas/Location" },
+              "lpwan": {
+                "type": "object",
+                "properties": {
+                  "lorawan": {
+                    "type": "object",
+                    "properties": { "id": { "type": "string" } }
+                  },
+                  "sigfox": {
+                    "type": "object",
+                    "properties": {
+                      "id": { "type": "string" },
+                      "pac": { "type": "string" }
+                    }
+                  }
+                }
+              },
+              "scapKeys": {
+                "type": "object",
+                "properties": {
+                  "uplink": { "type": "string" },
+                  "downlink": { "type": "string" }
+                }
+              }
             }
           }
         ]
