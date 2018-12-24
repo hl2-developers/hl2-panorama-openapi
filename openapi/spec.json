@@ -198,6 +198,62 @@
         }
       }
     },
+    "/applications/{organizationId}/{applicationId}/devices": {
+      "parameters": [
+        { "$ref": "#/components/parameters/organizationId" },
+        { "$ref": "#/components/parameters/applicationId" }
+      ],
+      "get": {
+        "tags": ["Applications"],
+        "description": "List the devices linked to one of your organization’s application",
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/DeviceInArray" }
+                }
+              }
+            }
+          },
+          "401": { "$ref": "#/components/responses/401" },
+          "404": { "$ref": "#/components/responses/404" },
+          "429": { "$ref": "#/components/responses/429" },
+          "500": { "$ref": "#/components/responses/500" }
+        }
+      }
+    },
+    "/applications/{organizationId}/{applicationId}/devices/{deviceId}": {
+      "parameters": [
+        { "$ref": "#/components/parameters/organizationId" },
+        { "$ref": "#/components/parameters/applicationId" },
+        { "$ref": "#/components/parameters/deviceId" }
+      ],
+      "put": {
+        "tags": ["Applications"],
+        "description": "Add a device to one of your organization’s applications. If the device was already linked to the application, behaves as though it has just been added (no error, 204 response code)",
+        "responses": {
+          "204": { "$ref": "#/components/responses/204" },
+          "401": { "$ref": "#/components/responses/401" },
+          "404": { "$ref": "#/components/responses/404" },
+          "429": { "$ref": "#/components/responses/429" },
+          "500": { "$ref": "#/components/responses/500" }
+        }
+      },
+      "delete": {
+        "tags": ["Applications"],
+        "description": "Remove a device from the specified application",
+        "responses": {
+          "204": { "$ref": "#/components/responses/204" },
+          "401": { "$ref": "#/components/responses/401" },
+          "404": { "$ref": "#/components/responses/404" },
+          "429": { "$ref": "#/components/responses/429" },
+          "500": { "$ref": "#/components/responses/500" }
+        }
+      }
+    },
     "/devices/{organizationId}/{deviceId}": {
       "parameters": [
         { "$ref": "#/components/parameters/organizationId" },
