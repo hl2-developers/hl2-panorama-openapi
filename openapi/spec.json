@@ -56,7 +56,7 @@
         "description": "Get your account details",
         "responses": {
           "200": {
-            "description": "Successful response",
+            "description": "Success",
             "content": {
               "application/json": {
                 "schema": { "$ref": "#/components/schemas/Account" }
@@ -70,7 +70,7 @@
       },
       "put": {
         "tags": ["Accounts"],
-        "description": "Update your account details",
+        "description": "Update your account",
         "requestBody": {
           "content": {
             "application/json": {
@@ -87,7 +87,7 @@
         },
         "responses": {
           "200": {
-            "description": "Successful response",
+            "description": "Success",
             "content": {
               "application/json": {
                 "schema": { "$ref": "#/components/schemas/Account" }
@@ -113,7 +113,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Successful response",
+            "description": "Success",
             "content": {
               "application/json": {
                 "schema": {
@@ -138,7 +138,7 @@
         "description": "Get the details for one of your organization’s applications",
         "responses": {
           "200": {
-            "description": "Successful response",
+            "description": "Success",
             "content": {
               "application/json": {
                 "schema": { "$ref": "#/components/schemas/Application" }
@@ -172,7 +172,7 @@
         },
         "responses": {
           "200": {
-            "description": "Successful response",
+            "description": "Success",
             "content": {
               "application/json": {
                 "schema": { "$ref": "#/components/schemas/Application" }
@@ -208,7 +208,7 @@
         "description": "List the devices linked to one of your organization’s application",
         "responses": {
           "200": {
-            "description": "Successful response",
+            "description": "Success",
             "content": {
               "application/json": {
                 "schema": {
@@ -264,7 +264,7 @@
         "description": "Get the details for a device registered with your organization",
         "responses": {
           "200": {
-            "description": "Successful response",
+            "description": "Success",
             "content": {
               "application/json": {
                 "schema": { "$ref": "#/components/schemas/Device" }
@@ -303,7 +303,7 @@
         },
         "responses": {
           "200": {
-            "description": "Successful response",
+            "description": "Success",
             "content": {
               "application/json": {
                 "schema": { "$ref": "#/components/schemas/Device" }
@@ -334,7 +334,7 @@
         "description": "Return the supported languages",
         "responses": {
           "200": {
-            "description": "Successful response",
+            "description": "Success",
             "content": {
               "application/json": {
                 "schema": {
@@ -374,7 +374,7 @@
         "description": "Return the supported timezones",
         "responses": {
           "200": {
-            "description": "Successful response",
+            "description": "Success",
             "content": {
               "application/json": {
                 "schema": {
@@ -400,7 +400,7 @@
         "description": "Get your organization details",
         "responses": {
           "200": {
-            "description": "Successful response",
+            "description": "Success",
             "content": {
               "application/json": {
                 "schema": { "$ref": "#/components/schemas/Organization" }
@@ -432,7 +432,7 @@
         },
         "responses": {
           "200": {
-            "description": "Successful response",
+            "description": "Success",
             "content": {
               "application/json": {
                 "schema": { "$ref": "#/components/schemas/Organization" }
@@ -460,7 +460,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Successful response",
+            "description": "Success",
             "content": {
               "application/json": {
                 "schema": {
@@ -503,7 +503,7 @@
         },
         "responses": {
           "200": {
-            "description": "Successful response",
+            "description": "Success",
             "content": {
               "application/json": {
                 "schema": { "$ref": "#/components/schemas/Application" }
@@ -543,7 +543,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Successful response",
+            "description": "Success",
             "content": {
               "application/json": {
                 "schema": {
@@ -591,7 +591,7 @@
         },
         "responses": {
           "200": {
-            "description": "Successful response",
+            "description": "Success",
             "content": {
               "application/json": {
                 "schema": { "$ref": "#/components/schemas/Device" }
@@ -625,7 +625,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Successful response",
+            "description": "Success",
             "content": {
               "application/json": {
                 "schema": {
@@ -709,7 +709,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Successful response",
+            "description": "Success",
             "content": {
               "application/json": {
                 "schema": {
@@ -748,7 +748,7 @@
         },
         "responses": {
           "200": {
-            "description": "Successful response",
+            "description": "Success",
             "content": {
               "application/json": {
                 "schema": { "$ref": "#/components/schemas/Product" }
@@ -776,7 +776,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Successful response",
+            "description": "Success",
             "content": {
               "application/json": {
                 "schema": {
@@ -811,7 +811,7 @@
         },
         "responses": {
           "200": {
-            "description": "Successful response",
+            "description": "Success",
             "content": {
               "application/json": {
                 "schema": { "$ref": "#/components/schemas/Team" }
@@ -863,7 +863,7 @@
         "description": "Get the details of one of your organization’s products, or of a public product not owned by your organization",
         "responses": {
           "200": {
-            "description": "Successful response",
+            "description": "Success",
             "content": {
               "application/json": {
                 "schema": { "$ref": "#/components/schemas/Product" }
@@ -899,7 +899,7 @@
         },
         "responses": {
           "200": {
-            "description": "Successful response",
+            "description": "Success",
             "content": {
               "application/json": {
                 "schema": { "$ref": "#/components/schemas/Product" }
@@ -934,7 +934,7 @@
         "description": "Get the details of one of your organization’s teams",
         "responses": {
           "200": {
-            "description": "Successful response",
+            "description": "Success",
             "content": {
               "application/json": {
                 "schema": { "$ref": "#/components/schemas/Team" }
@@ -965,7 +965,7 @@
         },
         "responses": {
           "200": {
-            "description": "Successful response",
+            "description": "Success",
             "content": {
               "application/json": {
                 "schema": { "$ref": "#/components/schemas/Team" }
@@ -1006,7 +1006,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Successful response",
+            "description": "Success",
             "content": {
               "application/json": {
                 "schema": {
@@ -1079,7 +1079,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Successful response",
+            "description": "Success",
             "content": {
               "application/json": {
                 "schema": {
