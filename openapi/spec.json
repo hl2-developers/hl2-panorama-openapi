@@ -205,7 +205,17 @@
     "/applications/{organizationId}/{applicationId}/devices": {
       "parameters": [
         { "$ref": "#/components/parameters/organizationId" },
-        { "$ref": "#/components/parameters/applicationId" }
+        { "$ref": "#/components/parameters/applicationId" },
+        { "$ref": "#/components/parameters/limit" },
+        { "$ref": "#/components/parameters/page" },
+        { "$ref": "#/components/parameters/sort" },
+        {
+          "in": "query",
+          "name": "productId",
+          "description": "The device product ID",
+          "required": true,
+          "schema": { "type": "string" }
+        }
       ],
       "get": {
         "tags": ["Applications"],
@@ -254,6 +264,253 @@
         "description": "Remove a device from the specified application",
         "responses": {
           "204": { "$ref": "#/components/responses/204" },
+          "401": { "$ref": "#/components/responses/401" },
+          "404": { "$ref": "#/components/responses/404" },
+          "429": { "$ref": "#/components/responses/429" },
+          "500": { "$ref": "#/components/responses/500" }
+        }
+      }
+    },
+    "/applications/{organizationId}/{applicationId}/hooks": {
+      "parameters": [
+        { "$ref": "#/components/parameters/organizationId" },
+        { "$ref": "#/components/parameters/applicationId" }
+      ],
+      "get": {
+        "tags": ["Applications"],
+        "summary": "List application hooks",
+        "description": "List all the application hooks for one of your organization’s applications",
+        "parameters": [
+          { "$ref": "#/components/parameters/limit" },
+          { "$ref": "#/components/parameters/page" },
+          { "$ref": "#/components/parameters/q" },
+          { "$ref": "#/components/parameters/sort" }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ApplicationHookInArray"
+                  }
+                }
+              }
+            }
+          },
+          "401": { "$ref": "#/components/responses/401" },
+          "404": { "$ref": "#/components/responses/404" },
+          "422": { "$ref": "#/components/responses/422" },
+          "429": { "$ref": "#/components/responses/429" },
+          "500": { "$ref": "#/components/responses/500" }
+        }
+      },
+      "post": {
+        "tags": ["Applications"],
+        "summary": "Create an application hook",
+        "description": "Create an application hook for one of your organization’s applications",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["url"],
+                "properties": {
+                  "allowUnverifiedSSLCert": {
+                    "type": "boolean",
+                    "default": false
+                  },
+                  "authentication": {
+                    "type": "object",
+                    "properties": {
+                      "basic": {
+                        "type": "object",
+                        "required": ["user", "pass"],
+                        "properties": {
+                          "user": { "type": "string" },
+                          "pass": { "type": "string" }
+                        }
+                      },
+                      "header": {
+                        "type": "object",
+                        "required": ["name", "value"],
+                        "properties": {
+                          "name": { "type": "string" },
+                          "value": { "type": "string" }
+                        }
+                      }
+                    }
+                  },
+                  "disabled": { "type": "boolean", "default": false },
+                  "url": { "type": "string" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Device" }
+              }
+            }
+          },
+          "401": { "$ref": "#/components/responses/401" },
+          "404": { "$ref": "#/components/responses/404" },
+          "429": { "$ref": "#/components/responses/429" },
+          "500": { "$ref": "#/components/responses/500" }
+        }
+      }
+    },
+    "/applications/{organizationId}/{applicationId}/hooks/{hookId}": {
+      "parameters": [
+        { "$ref": "#/components/parameters/organizationId" },
+        { "$ref": "#/components/parameters/applicationId" },
+        { "$ref": "#/components/parameters/hookId" }
+      ],
+      "get": {
+        "tags": ["Applications"],
+        "summary": "Get an application hook",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ApplicationHook" }
+              }
+            }
+          },
+          "401": { "$ref": "#/components/responses/401" },
+          "404": { "$ref": "#/components/responses/404" },
+          "429": { "$ref": "#/components/responses/429" },
+          "500": { "$ref": "#/components/responses/500" }
+        }
+      },
+      "put": {
+        "tags": ["Applications"],
+        "summary": "Update an application hook",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["url"],
+                "properties": {
+                  "allowUnverifiedSSLCert": {
+                    "type": "boolean",
+                    "default": false
+                  },
+                  "authentication": {
+                    "type": "object",
+                    "properties": {
+                      "basic": {
+                        "type": "object",
+                        "required": ["user", "pass"],
+                        "properties": {
+                          "user": { "type": "string" },
+                          "pass": { "type": "string" }
+                        }
+                      },
+                      "header": {
+                        "type": "object",
+                        "required": ["name", "value"],
+                        "properties": {
+                          "name": { "type": "string" },
+                          "value": { "type": "string" }
+                        }
+                      }
+                    }
+                  },
+                  "disabled": { "type": "boolean", "default": false },
+                  "url": { "type": "string" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ApplicationHook" }
+              }
+            }
+          },
+          "401": { "$ref": "#/components/responses/401" },
+          "404": { "$ref": "#/components/responses/404" },
+          "422": { "$ref": "#/components/responses/422" },
+          "429": { "$ref": "#/components/responses/429" },
+          "500": { "$ref": "#/components/responses/500" }
+        }
+      },
+      "delete": {
+        "tags": ["Applications"],
+        "summary": "Delete an application hook",
+        "responses": {
+          "204": { "$ref": "#/components/responses/204" },
+          "401": { "$ref": "#/components/responses/401" },
+          "404": { "$ref": "#/components/responses/404" },
+          "429": { "$ref": "#/components/responses/429" },
+          "500": { "$ref": "#/components/responses/500" }
+        }
+      }
+    },
+    "/applications/{organizationId}/{applicationId}/hooks/{hookId}/deliveries": {
+      "parameters": [
+        { "$ref": "#/components/parameters/organizationId" },
+        { "$ref": "#/components/parameters/applicationId" },
+        { "$ref": "#/components/parameters/hookId" }
+      ],
+      "get": {
+        "tags": ["Applications"],
+        "summary": "List application hook deliveries",
+        "description": "Get the list of “deliveries” for an application hook, that is the history of all the times the hook was called, with the payload sent to and the response received from the hook URL",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ApplicationHookDelivery"
+                  }
+                }
+              }
+            }
+          },
+          "401": { "$ref": "#/components/responses/401" },
+          "404": { "$ref": "#/components/responses/404" },
+          "429": { "$ref": "#/components/responses/429" },
+          "500": { "$ref": "#/components/responses/500" }
+        }
+      }
+    },
+    "/applications/{organizationId}/{applicationId}/hooks/{hookId}/ping": {
+      "parameters": [
+        { "$ref": "#/components/parameters/organizationId" },
+        { "$ref": "#/components/parameters/applicationId" },
+        { "$ref": "#/components/parameters/hookId" }
+      ],
+      "post": {
+        "tags": ["Applications"],
+        "summary": "Ping an application hook",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApplicationHookDelivery"
+                }
+              }
+            }
+          },
           "401": { "$ref": "#/components/responses/401" },
           "404": { "$ref": "#/components/responses/404" },
           "429": { "$ref": "#/components/responses/429" },
@@ -1213,6 +1470,80 @@
           "description": { "type": "string" }
         }
       },
+      "ApplicationHookInArray": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "url": { "type": "string" },
+          "disabled": { "type": "boolean" }
+        }
+      },
+      "ApplicationHook": {
+        "allOf": [
+          { "$ref": "#/components/schemas/ApplicationHookInArray" },
+          { "$ref": "#/components/schemas/Timestamps" },
+          {
+            "type": "object",
+            "properties": {
+              "allowUnverifiedSSLCert": { "type": "boolean" },
+              "authentication": {
+                "type": "object",
+                "properties": {
+                  "basic": {
+                    "type": "object",
+                    "required": ["user", "pass"],
+                    "properties": {
+                      "user": { "type": "string" },
+                      "pass": { "type": "string" }
+                    }
+                  },
+                  "header": {
+                    "type": "object",
+                    "required": ["name", "value"],
+                    "properties": {
+                      "name": { "type": "string" },
+                      "value": { "type": "string" }
+                    }
+                  }
+                }
+              },
+              "application": {
+                "type": "object",
+                "properties": {
+                  "id": { "type": "string" },
+                  "organizationId": { "type": "string" }
+                }
+              }
+            }
+          }
+        ]
+      },
+      "ApplicationHookDelivery": {
+        "allOf": [
+          { "$ref": "#/components/schemas/Timestamps" },
+          {
+            "type": "object",
+            "properties": {
+              "id": { "type": "boolean" },
+              "applicationHookId": { "type": "boolean" },
+              "application": {
+                "type": "object",
+                "properties": {
+                  "id": { "type": "string" },
+                  "organizationId": { "type": "string" }
+                }
+              },
+              "deviceId": { "type": "boolean" },
+              "ts": { "type": "number" },
+              "maxNumberAttempts": { "type": "number" },
+              "attemptsMade": { "type": "number" },
+              "successful": { "type": "boolean" },
+              "request": { "type": "object" },
+              "response": { "type": "object" }
+            }
+          }
+        ]
+      },
       "ApplicationPermission": {
         "type": "object",
         "required": ["permission"],
@@ -1444,6 +1775,13 @@
         "in": "path",
         "name": "deviceSerial",
         "description": "The device serial",
+        "required": true,
+        "schema": { "type": "string" }
+      },
+      "hookId": {
+        "in": "path",
+        "name": "hookId",
+        "description": "The hook ID",
         "required": true,
         "schema": { "type": "string" }
       },
