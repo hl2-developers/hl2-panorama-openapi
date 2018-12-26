@@ -2,7 +2,7 @@
   "openapi": "3.0.2",
   "info": {
     "title": "hl2 Panorama API",
-    "description": "Welcome to the hl2 Panorama API specification. We will commit ourselves to support the library and maintain backwards compatibility in the future, but we reserve the right to make incompatible changes when necessary. If you experience any issues, please contact support",
+    "description": "Welcome to the hl2 Panorama API specification. We will commit ourselves to support the library and maintain backwards compatibility in the future, but we reserve the right to make incompatible changes when necessary. If you experience any issues, please contact support.",
     "version": "v1",
     "contact": {
       "name": "API support",
@@ -104,7 +104,7 @@
       "get": {
         "tags": ["Accounts"],
         "summary": "List accounts",
-        "description": "List all the active accounts of the hl2 Panorama platform, or search for one using their `name` or `username`. This is useful to figure out their IDs to add them to your organization using the `Add member` endpoint",
+        "description": "List all the active accounts of the hl2 Panorama platform, or search for one using their `name` or `username`. This is useful to figure out their IDs to add them to your organization using the `Add member` endpoint.",
         "parameters": [
           { "$ref": "#/components/parameters/limit" },
           { "$ref": "#/components/parameters/page" },
@@ -137,7 +137,7 @@
       "get": {
         "tags": ["Applications"],
         "summary": "Get an application",
-        "description": "Get the details for one of your organization’s applications",
+        "description": "Get the details for one of your organization’s applications.",
         "responses": {
           "200": {
             "description": "Success",
@@ -156,7 +156,7 @@
       "put": {
         "tags": ["Applications"],
         "summary": "Update an application",
-        "description": "Update one of your organization’s applications",
+        "description": "Update one of your organization’s applications.",
         "requestBody": {
           "content": {
             "application/json": {
@@ -192,7 +192,7 @@
       "delete": {
         "tags": ["Applications"],
         "summary": "Delete an application",
-        "description": "Delete one of your organization’s applications",
+        "description": "Delete one of your organization’s applications.",
         "responses": {
           "204": { "$ref": "#/components/responses/204" },
           "401": { "$ref": "#/components/responses/401" },
@@ -212,7 +212,7 @@
         {
           "in": "query",
           "name": "productId",
-          "description": "The device product ID",
+          "description": "The device product ID.",
           "required": true,
           "schema": { "type": "string" }
         }
@@ -220,7 +220,7 @@
       "get": {
         "tags": ["Applications"],
         "summary": "List application devices",
-        "description": "List the devices linked to one of your organization’s applications",
+        "description": "List the devices linked to one of your organization’s applications.",
         "responses": {
           "200": {
             "description": "Success",
@@ -249,7 +249,7 @@
       "put": {
         "tags": ["Applications"],
         "summary": "Add application device",
-        "description": "Add a device to one of your organization’s applications. If the device was already linked to the application, behaves as though it has just been added (no error, 204 response code)",
+        "description": "Add a device to one of your organization’s applications. If the device was already linked to the application, behaves as though it has just been added (no error, 204 response code).",
         "responses": {
           "204": { "$ref": "#/components/responses/204" },
           "401": { "$ref": "#/components/responses/401" },
@@ -261,7 +261,7 @@
       "delete": {
         "tags": ["Applications"],
         "summary": "Remove application device",
-        "description": "Remove a device from the specified application",
+        "description": "Remove a device from the specified application.",
         "responses": {
           "204": { "$ref": "#/components/responses/204" },
           "401": { "$ref": "#/components/responses/401" },
@@ -279,7 +279,7 @@
       "get": {
         "tags": ["Applications"],
         "summary": "List application hooks",
-        "description": "List all the application hooks for one of your organization’s applications",
+        "description": "List all the application hooks for one of your organization’s applications.",
         "parameters": [
           { "$ref": "#/components/parameters/limit" },
           { "$ref": "#/components/parameters/page" },
@@ -310,7 +310,7 @@
       "post": {
         "tags": ["Applications"],
         "summary": "Create an application hook",
-        "description": "Create an application hook for one of your organization’s applications",
+        "description": "Create an application hook for one of your organization’s applications.",
         "requestBody": {
           "content": {
             "application/json": {
@@ -469,7 +469,7 @@
       "get": {
         "tags": ["Applications"],
         "summary": "List application hook deliveries",
-        "description": "Get the list of “deliveries” for an application hook, that is the history of all the times the hook was called, with the payload sent to and the response received from the hook URL",
+        "description": "Get the list of “deliveries” for an application hook, that is the history of all the times the hook was called, with the payload sent to and the response received from the hook URL.",
         "responses": {
           "200": {
             "description": "Success",
@@ -526,7 +526,7 @@
       "get": {
         "tags": ["Devices"],
         "summary": "Get a device",
-        "description": "Get the details for a device registered with your organization",
+        "description": "Get the details for a device registered with your organization.",
         "responses": {
           "200": {
             "description": "Success",
@@ -545,7 +545,7 @@
       "put": {
         "tags": ["Devices"],
         "summary": "Update a device",
-        "description": "Update the details for a device registered with your organization",
+        "description": "Update the details for a device registered with your organization.",
         "requestBody": {
           "content": {
             "application/json": {
@@ -585,7 +585,7 @@
       "delete": {
         "tags": ["Devices"],
         "summary": "Remove a device",
-        "description": "Remove the device from your organization. This will not be possible if the device is linked to any application.",
+        "description": "Remove the device from your organization. This will not be possible if the device is linked to any application..",
         "responses": {
           "204": { "$ref": "#/components/responses/204" },
           "401": { "$ref": "#/components/responses/401" },
@@ -599,7 +599,7 @@
       "get": {
         "tags": ["Help"],
         "summary": "List supported languages",
-        "description": "Return the supported languages",
+        "description": "Return the supported languages.",
         "responses": {
           "200": {
             "description": "Success",
@@ -640,7 +640,7 @@
       "get": {
         "tags": ["Help"],
         "summary": "List supported timezones",
-        "description": "Return the supported timezones",
+        "description": "Return the supported timezones.",
         "responses": {
           "200": {
             "description": "Success",
@@ -721,7 +721,7 @@
       "get": {
         "tags": ["Applications"],
         "summary": "List applications",
-        "description": "List the applications for your organization",
+        "description": "List the applications for your organization.",
         "parameters": [
           { "$ref": "#/components/parameters/limit" },
           { "$ref": "#/components/parameters/page" },
@@ -754,7 +754,7 @@
       "post": {
         "tags": ["Applications"],
         "summary": "Create an application",
-        "description": "Create a new application for your organization",
+        "description": "Create a new application for your organization.",
         "requestBody": {
           "content": {
             "application/json": {
@@ -793,7 +793,7 @@
       "get": {
         "tags": ["Devices"],
         "summary": "List devices",
-        "description": "List all the devices registered with your organization",
+        "description": "List all the devices registered with your organization.",
         "parameters": [
           { "$ref": "#/components/parameters/organizationId" },
           { "$ref": "#/components/parameters/limit" },
@@ -803,13 +803,13 @@
           {
             "in": "query",
             "name": "productId",
-            "description": "The device product ID to search for",
+            "description": "The device product ID to search for.",
             "schema": { "type": "string" }
           },
           {
             "in": "query",
             "name": "hasProduct",
-            "description": "Either `true` to filter devices with a product, or `false` to disable this filter",
+            "description": "Either `true` to filter devices with a product, or `false` to disable this filter.",
             "schema": { "type": "boolean" }
           }
         ],
@@ -836,7 +836,7 @@
       "post": {
         "tags": ["Devices"],
         "summary": "Register a device",
-        "description": "Register a device with your organization",
+        "description": "Register a device with your organization.",
         "parameters": [
           { "$ref": "#/components/parameters/organizationId" },
           { "$ref": "#/components/parameters/deviceSerial" }
@@ -884,7 +884,7 @@
       "get": {
         "tags": ["Organizations"],
         "summary": "List members",
-        "description": "List all users who are members of your organization",
+        "description": "List all users who are members of your organization.",
         "parameters": [
           { "$ref": "#/components/parameters/limit" },
           { "$ref": "#/components/parameters/page" },
@@ -893,7 +893,7 @@
           {
             "in": "query",
             "name": "role",
-            "description": "Filter members by their role",
+            "description": "Filter members by their role.",
             "schema": { "$ref": "#/components/schemas/OrganizationRole" }
           }
         ],
@@ -936,7 +936,7 @@
       "put": {
         "tags": ["Organizations"],
         "summary": "Add or update a member",
-        "description": "Add a member to your organization, or update an existing member",
+        "description": "Add a member to your organization, or update an existing member.",
         "requestBody": {
           "content": {
             "application/json": {
@@ -962,7 +962,7 @@
       "delete": {
         "tags": ["Organizations"],
         "summary": "Remove a member",
-        "description": "Remove a member from your organization. This will also remove the member from all the organization’s teams and they will no longer have access to any of the organization’s resources",
+        "description": "Remove a member from your organization. This will also remove the member from all the organization’s teams and they will no longer have access to any of the organization’s resources.",
         "responses": {
           "204": { "$ref": "#/components/responses/204" },
           "401": { "$ref": "#/components/responses/401" },
@@ -977,7 +977,7 @@
       "get": {
         "tags": ["Products"],
         "summary": "List products",
-        "description": "List the products for your organization. Public products not owned by your organization are not listed",
+        "description": "List the products for your organization. Public products not owned by your organization are not listed.",
         "parameters": [
           { "$ref": "#/components/parameters/limit" },
           { "$ref": "#/components/parameters/page" },
@@ -1005,7 +1005,7 @@
       "post": {
         "tags": ["Products"],
         "summary": "Create a product",
-        "description": "Create a product for your organization",
+        "description": "Create a product for your organization.",
         "requestBody": {
           "content": {
             "application/json": {
@@ -1046,7 +1046,7 @@
       "get": {
         "tags": ["Teams"],
         "summary": "List teams",
-        "description": "List your organization’s teams",
+        "description": "List your organization’s teams.",
         "parameters": [
           { "$ref": "#/components/parameters/limit" },
           { "$ref": "#/components/parameters/page" },
@@ -1074,7 +1074,7 @@
       "post": {
         "tags": ["Teams"],
         "summary": "Create a team",
-        "description": "Create a team for your organization",
+        "description": "Create a team for your organization.",
         "requestBody": {
           "content": {
             "application/json": {
@@ -1109,7 +1109,7 @@
       "get": {
         "tags": ["Products"],
         "summary": "List public products",
-        "description": "List all the public products, whether they belong to your organization or not",
+        "description": "List all the public products, whether they belong to your organization or not.",
         "parameters": [
           { "$ref": "#/components/parameters/limit" },
           { "$ref": "#/components/parameters/page" },
@@ -1118,7 +1118,7 @@
         ],
         "responses": {
           "200": {
-            "description": "A list of products",
+            "description": "A list of products.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1142,7 +1142,7 @@
       "get": {
         "tags": ["Products"],
         "summary": "Get a product",
-        "description": "Get the details of one of your organization’s products, or of a public product not owned by your organization",
+        "description": "Get the details of one of your organization’s products, or of a public product not owned by your organization.",
         "responses": {
           "200": {
             "description": "Success",
@@ -1161,7 +1161,7 @@
       "put": {
         "tags": ["Products"],
         "summary": "Update a product",
-        "description": "Update one of your organization’s products",
+        "description": "Update one of your organization’s products.",
         "requestBody": {
           "content": {
             "application/json": {
@@ -1199,7 +1199,7 @@
       "delete": {
         "tags": ["Products"],
         "summary": "Delete a product",
-        "description": "Delete one of your organization’s products. This will only be possible if the product is neither public nor used by any device",
+        "description": "Delete one of your organization’s products. This will only be possible if the product is neither public nor used by any device.",
         "responses": {
           "204": { "$ref": "#/components/responses/204" },
           "401": { "$ref": "#/components/responses/401" },
@@ -1216,7 +1216,7 @@
       "get": {
         "tags": ["Teams"],
         "summary": "Get a team",
-        "description": "Get the details of one of your organization’s teams",
+        "description": "Get the details of one of your organization’s teams.",
         "responses": {
           "200": {
             "description": "Success",
@@ -1234,7 +1234,7 @@
       "put": {
         "tags": ["Teams"],
         "summary": "Update a team",
-        "description": "Update the details of one of your organization’s teams",
+        "description": "Update the details of one of your organization’s teams.",
         "requestBody": {
           "content": {
             "application/json": {
@@ -1268,7 +1268,7 @@
       "delete": {
         "tags": ["Teams"],
         "summary": "Delete a team",
-        "description": "Delete one of your organization’s teams",
+        "description": "Delete one of your organization’s teams.",
         "responses": {
           "204": { "$ref": "#/components/responses/204" },
           "401": { "$ref": "#/components/responses/401" },
@@ -1286,7 +1286,7 @@
       "get": {
         "tags": ["Teams"],
         "summary": "List team applications",
-        "description": "List the applications of one of your organization’s teams",
+        "description": "List the applications of one of your organization’s teams.",
         "parameters": [
           { "$ref": "#/components/parameters/limit" },
           { "$ref": "#/components/parameters/page" },
@@ -1325,7 +1325,7 @@
       "put": {
         "tags": ["Teams"],
         "summary": "Add or update a team application",
-        "description": "Add an application to one of your organization’s teams, or change the team application’s permission",
+        "description": "Add an application to one of your organization’s teams, or change the team application’s permission.",
         "requestBody": {
           "content": {
             "application/json": {
@@ -1345,7 +1345,7 @@
       "delete": {
         "tags": ["Teams"],
         "summary": "Remove a team application",
-        "description": "Remove an application from one of your organization’s teams",
+        "description": "Remove an application from one of your organization’s teams.",
         "responses": {
           "204": { "$ref": "#/components/responses/204" },
           "401": { "$ref": "#/components/responses/401" },
@@ -1362,7 +1362,7 @@
       "get": {
         "tags": ["Teams"],
         "summary": "List team members",
-        "description": "List members of the specified team",
+        "description": "List members of the specified team.",
         "parameters": [
           { "$ref": "#/components/parameters/limit" },
           { "$ref": "#/components/parameters/page" },
@@ -1396,7 +1396,7 @@
       "put": {
         "tags": ["Teams"],
         "summary": "Add or update team application",
-        "description": "Add a member to the team. If the member was already in the team, behaves as though it has just been added",
+        "description": "Add a member to the team. If the member was already in the team, behaves as though it has just been added.",
         "responses": {
           "204": { "$ref": "#/components/responses/204" },
           "401": { "$ref": "#/components/responses/401" },
@@ -1408,7 +1408,7 @@
       "delete": {
         "tags": ["Teams"],
         "summary": "Remove a team application",
-        "description": "Remove a member from one of your organization’s teams. The member is still part of your organization, but no longer has access to the resources shared by the team",
+        "description": "Remove a member from one of your organization’s teams. The member is still part of your organization, but no longer has access to the resources shared by the team.",
         "responses": {
           "204": { "$ref": "#/components/responses/204" },
           "401": { "$ref": "#/components/responses/401" },
@@ -1537,7 +1537,7 @@
               "ts": { "type": "number" },
               "maxNumberAttempts": { "type": "number" },
               "attemptsMade": { "type": "number" },
-              "successful": { "type": "boolean" },
+              "successul": { "type": "boolean" },
               "request": { "type": "object" },
               "response": { "type": "object" }
             }
@@ -1849,7 +1849,7 @@
         "description": "No Content"
       },
       "401": {
-        "description": "Unauthorized, your API key is not valid",
+        "description": "Unauthorized",
         "content": {
           "application/json": {
             "schema": {
@@ -1859,7 +1859,7 @@
         }
       },
       "404": {
-        "description": "Not Found, the requested resource cannot be found",
+        "description": "Not Found",
         "content": {
           "application/json": {
             "schema": {
@@ -1869,7 +1869,7 @@
         }
       },
       "422": {
-        "description": "Unprocessable Entity, you have sent invalid fields (details are provided in the error body)",
+        "description": "Unprocessable Entity",
         "content": {
           "application/json": {
             "schema": {
@@ -1879,7 +1879,7 @@
         }
       },
       "429": {
-        "description": "Too Many Requests, API rate limit exceeded",
+        "description": "Too Many Requests",
         "content": {
           "application/json": {
             "schema": {
@@ -1889,7 +1889,7 @@
         }
       },
       "500": {
-        "description": "Internal Server Error, try again later or contact support",
+        "description": "Internal Server Error",
         "content": {
           "application/json": {
             "schema": {
