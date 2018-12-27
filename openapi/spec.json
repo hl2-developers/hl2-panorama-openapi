@@ -250,6 +250,267 @@
         }
       }
     },
+    "/applications/{organizationId}/{applicationId}/alerts": {
+      "parameters": [
+        { "$ref": "#/components/parameters/organizationId" },
+        { "$ref": "#/components/parameters/applicationId" }
+      ],
+      "get": {
+        "tags": ["Applications"],
+        "summary": "List application alerts",
+        "description": "List all the application alerts for one of your organization’s applications.",
+        "parameters": [
+          { "$ref": "#/components/parameters/limit" },
+          { "$ref": "#/components/parameters/page" },
+          { "$ref": "#/components/parameters/q" },
+          { "$ref": "#/components/parameters/sort" }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ApplicationAlertInArray"
+                  }
+                }
+              }
+            }
+          },
+          "401": { "$ref": "#/components/responses/401" },
+          "404": { "$ref": "#/components/responses/404" },
+          "429": { "$ref": "#/components/responses/429" },
+          "500": { "$ref": "#/components/responses/500" }
+        }
+      },
+      "post": {
+        "tags": ["Applications"],
+        "summary": "Create an application alert",
+        "description": "Create an application alert for one of your organization’s applications.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["description", "conditions"],
+                "properties": {
+                  "title": {
+                    "type": "object",
+                    "properties": {
+                      "en": { "type": "string" },
+                      "fr": { "type": "string" }
+                    }
+                  },
+                  "description": {
+                    "type": "object",
+                    "properties": {
+                      "en": { "type": "string" },
+                      "fr": { "type": "string" }
+                    }
+                  },
+                  "conditions": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "required": ["type", "condition"],
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "enum": ["bool", "number", "text"]
+                        },
+                        "condition": {
+                          "type": "object",
+                          "required": ["deviceSerial", "variable"],
+                          "properties": {
+                            "deviceSerial": { "type": "string" },
+                            "variable": {
+                              "type": "object",
+                              "required": ["name", "operator"],
+                              "properties": {
+                                "name": { "type": "string" },
+                                "value": { "type": "string" },
+                                "operator": {
+                                  "type": "string",
+                                  "enum": [
+                                    "equal",
+                                    "greaterThan",
+                                    "greaterThanOrEqual",
+                                    "lessThan",
+                                    "lessThanOrEqual",
+                                    "notEqual"
+                                  ]
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "email": {
+                    "type": "object",
+                    "properties": {
+                      "recipients": {
+                        "type": "array",
+                        "items": { "type": "string" }
+                      }
+                    }
+                  },
+                  "disabled": { "type": "boolean", "default": false }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Device" }
+              }
+            }
+          },
+          "401": { "$ref": "#/components/responses/401" },
+          "404": { "$ref": "#/components/responses/404" },
+          "422": { "$ref": "#/components/responses/422" },
+          "429": { "$ref": "#/components/responses/429" },
+          "500": { "$ref": "#/components/responses/500" }
+        }
+      }
+    },
+    "/applications/{organizationId}/{applicationId}/alerts/{alertId}": {
+      "parameters": [
+        { "$ref": "#/components/parameters/organizationId" },
+        { "$ref": "#/components/parameters/applicationId" },
+        { "$ref": "#/components/parameters/alertId" }
+      ],
+      "get": {
+        "tags": ["Applications"],
+        "summary": "Get an application alert",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ApplicationAlert" }
+              }
+            }
+          },
+          "401": { "$ref": "#/components/responses/401" },
+          "404": { "$ref": "#/components/responses/404" },
+          "429": { "$ref": "#/components/responses/429" },
+          "500": { "$ref": "#/components/responses/500" }
+        }
+      },
+      "put": {
+        "tags": ["Applications"],
+        "summary": "Update an application alert",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["description", "conditions"],
+                "properties": {
+                  "title": {
+                    "type": "object",
+                    "properties": {
+                      "en": { "type": "string" },
+                      "fr": { "type": "string" }
+                    }
+                  },
+                  "description": {
+                    "type": "object",
+                    "properties": {
+                      "en": { "type": "string" },
+                      "fr": { "type": "string" }
+                    }
+                  },
+                  "conditions": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "required": ["type", "condition"],
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "enum": ["bool", "number", "text"]
+                        },
+                        "condition": {
+                          "type": "object",
+                          "required": ["deviceSerial", "variable"],
+                          "properties": {
+                            "deviceSerial": { "type": "string" },
+                            "variable": {
+                              "type": "object",
+                              "required": ["name", "operator"],
+                              "properties": {
+                                "name": { "type": "string" },
+                                "value": { "type": "string" },
+                                "operator": {
+                                  "type": "string",
+                                  "enum": [
+                                    "equal",
+                                    "greaterThan",
+                                    "greaterThanOrEqual",
+                                    "lessThan",
+                                    "lessThanOrEqual",
+                                    "notEqual"
+                                  ]
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "email": {
+                    "type": "object",
+                    "properties": {
+                      "recipients": {
+                        "type": "array",
+                        "items": { "type": "string" }
+                      }
+                    }
+                  },
+                  "disabled": { "type": "boolean", "default": false }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ApplicationHook" }
+              }
+            }
+          },
+          "401": { "$ref": "#/components/responses/401" },
+          "404": { "$ref": "#/components/responses/404" },
+          "422": { "$ref": "#/components/responses/422" },
+          "429": { "$ref": "#/components/responses/429" },
+          "500": { "$ref": "#/components/responses/500" }
+        }
+      },
+      "delete": {
+        "tags": ["Applications"],
+        "summary": "Delete an application alert",
+        "responses": {
+          "204": { "$ref": "#/components/responses/204" },
+          "401": { "$ref": "#/components/responses/401" },
+          "404": { "$ref": "#/components/responses/404" },
+          "429": { "$ref": "#/components/responses/429" },
+          "500": { "$ref": "#/components/responses/500" }
+        }
+      }
+    },
     "/applications/{organizationId}/{applicationId}/hooks": {
       "parameters": [
         { "$ref": "#/components/parameters/organizationId" },
@@ -281,7 +542,6 @@
           },
           "401": { "$ref": "#/components/responses/401" },
           "404": { "$ref": "#/components/responses/404" },
-          "422": { "$ref": "#/components/responses/422" },
           "429": { "$ref": "#/components/responses/429" },
           "500": { "$ref": "#/components/responses/500" }
         }
@@ -340,6 +600,7 @@
           },
           "401": { "$ref": "#/components/responses/401" },
           "404": { "$ref": "#/components/responses/404" },
+          "422": { "$ref": "#/components/responses/422" },
           "429": { "$ref": "#/components/responses/429" },
           "500": { "$ref": "#/components/responses/500" }
         }
@@ -1449,6 +1710,87 @@
           "description": { "type": "string" }
         }
       },
+      "ApplicationAlertInArray": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "description": {
+            "type": "object",
+            "properties": {
+              "fr": { "type": "string" },
+              "en": { "type": "string" }
+            }
+          },
+          "disabled": { "type": "boolean" }
+        }
+      },
+      "ApplicationAlert": {
+        "allOf": [
+          { "$ref": "#/components/schemas/ApplicationAlertInArray" },
+          { "$ref": "#/components/schemas/Timestamps" },
+          {
+            "type": "object",
+            "properties": {
+              "id": { "type": "string" },
+              "title": {
+                "type": "object",
+                "properties": {
+                  "fr": { "type": "string" },
+                  "en": { "type": "string" }
+                }
+              },
+              "email": {
+                "type": "object",
+                "properties": {
+                  "recipients": {
+                    "type": "array",
+                    "items": { "$ref": "#/components/schemas/AccountInArray" }
+                  }
+                }
+              },
+              "conditions": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": ["type", "condition"],
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "enum": ["bool", "number", "text"]
+                    },
+                    "condition": {
+                      "type": "object",
+                      "required": ["deviceSerial", "variable"],
+                      "properties": {
+                        "deviceSerial": { "type": "string" },
+                        "variable": {
+                          "type": "object",
+                          "required": ["name", "operator"],
+                          "properties": {
+                            "name": { "type": "string" },
+                            "value": { "type": "string" },
+                            "operator": {
+                              "type": "string",
+                              "enum": [
+                                "equal",
+                                "greaterThan",
+                                "greaterThanOrEqual",
+                                "lessThan",
+                                "lessThanOrEqual",
+                                "notEqual"
+                              ]
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
       "ApplicationHookInArray": {
         "type": "object",
         "properties": {
@@ -1736,6 +2078,13 @@
       }
     },
     "parameters": {
+      "alertId": {
+        "in": "path",
+        "name": "alertId",
+        "description": "The application alert ID",
+        "required": true,
+        "schema": { "type": "string" }
+      },
       "applicationId": {
         "in": "path",
         "name": "applicationId",
