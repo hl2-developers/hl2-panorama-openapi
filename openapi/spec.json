@@ -511,6 +511,35 @@
         }
       }
     },
+    "/applications/{organizationId}/{applicationId}/alerts/{alertId}/disabled": {
+      "parameters": [
+        { "$ref": "#/components/parameters/organizationId" },
+        { "$ref": "#/components/parameters/applicationId" },
+        { "$ref": "#/components/parameters/alertId" }
+      ],
+      "put": {
+        "tags": ["Applications"],
+        "summary": "Disable an application alert",
+        "responses": {
+          "204": { "$ref": "#/components/responses/401" },
+          "401": { "$ref": "#/components/responses/401" },
+          "404": { "$ref": "#/components/responses/404" },
+          "429": { "$ref": "#/components/responses/429" },
+          "500": { "$ref": "#/components/responses/500" }
+        }
+      },
+      "delete": {
+        "tags": ["Applications"],
+        "summary": "Enable an application alert",
+        "responses": {
+          "204": { "$ref": "#/components/responses/204" },
+          "401": { "$ref": "#/components/responses/401" },
+          "404": { "$ref": "#/components/responses/404" },
+          "429": { "$ref": "#/components/responses/429" },
+          "500": { "$ref": "#/components/responses/500" }
+        }
+      }
+    },
     "/applications/{organizationId}/{applicationId}/hooks": {
       "parameters": [
         { "$ref": "#/components/parameters/organizationId" },
