@@ -17,7 +17,7 @@
     "validate": "swagger-cli validate openapi/spec.json"
   },
   "devDependencies": {
-    "husky": "1.3.0",
+    "husky": "1.3.1",
     "lint-staged": "8.1.0",
     "prettier": "1.15.3",
     "swagger-cli": "2.2.0"
