@@ -2,7 +2,7 @@
   "openapi": "3.0.2",
   "info": {
     "title": "hl2 Panorama API",
-    "description": "Welcome to the hl2 Panorama API specification. We will commit ourselves to support the library and maintain backwards compatibility in the future, but we reserve the right to make incompatible changes when necessary. If you experience any issues, please contact support.",
+    "description": "Welcome to the hl2 Panorama API specification. We will commit ourselves to support the library and maintain backwards compatibility in the future, but we reserve the right to make incompatible changes when necessary. If you experience any issues, please contact support.\n\n# Requests Limits \n\n## Size Limiting\n\n The maximum payload size for each request is 1 MB. Once you go over the size limit you will receive an `HTTP/1.1 413 Payload too large` error response.\n\n## Rate Limiting\n\nYou can make up to `20` requests per second to each API endpoint.\n\nFor public endpoints, requests are associated with your IP address. Once you are authenticated, requests are associated with your API key\n\n You can check the returned HTTP headers of any API request to see your current rate limit status. Once you go over the rate limit you will receive an `HTTP/1.1 429 Too Many Requests` error response.\n\n* `X-RateLimit-Limit`: Number of requests that the consumer is permitted to make per second.\n* `X-RateLimit-Remaining`: The number of requests remaining in the current rate limit window.\n* `X-RateLimit-Reset`: Remaining time until the number of requests is reset.\n\n",
     "version": "v1",
     "contact": {
       "name": "API support",
