@@ -850,16 +850,22 @@
               "schema": {
                 "type": "object",
                 "properties": {
+                  "location": {
+                    "$ref": "#/components/schemas/Location"
+                  },
                   "name": { "type": "string" },
-                  "tags": { "type": "array", "items": { "type": "string" } },
                   "product": {
                     "type": "object",
                     "properties": {
-                      "id": { "type": "string" },
-                      "organizationId": { "type": "string" }
+                      "id": {
+                        "type": "string"
+                      },
+                      "organizationId": {
+                        "type": "string"
+                      }
                     }
                   },
-                  "location": { "$ref": "#/components/schemas/Location" }
+                  "tags": { "type": "array", "items": { "type": "string" } }
                 }
               }
             }
@@ -883,7 +889,7 @@
       "delete": {
         "tags": ["Devices"],
         "summary": "Remove a device",
-        "description": "Remove the device from your organization. This will not be possible if the device is linked to any application..",
+        "description": "Remove the device from your organization. This will not be possible if the device is linked to any application, or if it has active routes.",
         "responses": {
           "204": { "$ref": "#/components/responses/204" },
           "401": { "$ref": "#/components/responses/401" },
@@ -1940,7 +1946,6 @@
           {
             "type": "object",
             "properties": {
-              "applicationCount": { "type": "number" },
               "location": { "$ref": "#/components/schemas/Location" },
               "lpwan": {
                 "type": "object",
@@ -1954,6 +1959,26 @@
                     "properties": {
                       "id": { "type": "string" },
                       "pac": { "type": "string" }
+                    }
+                  }
+                }
+              },
+              "routes": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "appKey": {
+                      "type": "string"
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "providerId": {
+                      "type": "string"
+                    },
+                    "status": {
+                      "type": "string"
                     }
                   }
                 }
@@ -1972,18 +1997,32 @@
       "DeviceInArray": {
         "type": "object",
         "properties": {
+          "activeRouteCount": {
+            "type": "number"
+          },
+          "applicationCount": {
+            "type": "number"
+          },
           "id": { "type": "string" },
-          "serial": { "type": "string" },
-          "name": { "type": "string" },
-          "slug": { "type": "string" },
-          "organizationId": { "type": "string" },
+          "name": {
+            "type": "string"
+          },
+          "organizationId": {
+            "type": "string"
+          },
           "product": {
             "type": "object",
             "properties": {
-              "id": { "type": "string" },
-              "organizationId": { "type": "string" }
+              "id": {
+                "type": "string"
+              },
+              "organizationId": {
+                "type": "string"
+              }
             }
           },
+          "serial": { "type": "string" },
+          "slug": { "type": "string" },
           "tags": {
             "type": "array",
             "items": { "type": "string" }
