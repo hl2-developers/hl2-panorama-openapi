@@ -1183,6 +1183,64 @@
         }
       }
     },
+    "/devices/{organizationId}/{deviceId}/routes/{routeId}/activate": {
+      "post": {
+        "tags": [
+          "Devices"
+        ],
+        "summary": "Activate a device route",
+        "description": "Activate a route for one of your organization's devices. The device will be provisioned with the provider if necessary.",
+        "responses": {
+          "204": {
+            "$ref": "#/components/responses/204"
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "422": {
+            "$ref": "#/components/responses/422"
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      }
+    },
+    "/devices/{organizationId}/{deviceId}/routes/{routeId}/deactivate": {
+      "post": {
+        "tags": [
+          "Devices"
+        ],
+        "summary": "Deactivate a device route",
+        "description": "Deactivate a route for one of your organization's devices. The device will be deprovisioned with the provider if necessary.",
+        "responses": {
+          "204": {
+            "$ref": "#/components/responses/204"
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "422": {
+            "$ref": "#/components/responses/422"
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      }
+    },
     "/organizations/{organizationId}/members": {
       "parameters": [{ "$ref": "#/components/parameters/organizationId" }],
       "get": {
