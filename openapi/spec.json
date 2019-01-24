@@ -1282,6 +1282,75 @@
         }
       }
     },
+    "/providers": {
+      "get": {
+        "tags": [
+          "Devices"
+        ],
+        "summary": "List providers",
+        "description": "List all the configured LoRaWAN and Sigfox providers.",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Provider"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      }
+    },
+    "/providers/{providerId}": {
+      "get": {
+        "tags": [
+          "Devices"
+        ],
+        "summary": "Get a provider",
+        "description": "Get the details for a provider given its ID.",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Provider"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      }
+    },
     "/organizations/{organizationId}/members": {
       "parameters": [{ "$ref": "#/components/parameters/organizationId" }],
       "get": {
@@ -2243,6 +2312,23 @@
           }
         }
       },
+      "Provider": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "slug": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          }
+        }
+      },
       "Team": {
         "allOf": [
           { "$ref": "#/components/schemas/TeamInArray" },
@@ -2334,6 +2420,15 @@
         "name": "page",
         "description": "The page number",
         "schema": { "type": "integer", "default": 1 }
+      },
+      "providerId": {
+        "in": "path",
+        "name": "providerId",
+        "description": "The provider ID",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
       },
       "productId": {
         "in": "path",
