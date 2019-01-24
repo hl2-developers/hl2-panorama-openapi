@@ -1241,6 +1241,47 @@
         }
       }
     },
+    "/devices/{organizationId}/{deviceId}/renew-scap-keys": {
+      "post": {
+        "tags": [
+          "Devices"
+        ],
+        "summary": "Renew a device's SCAP keys",
+        "description": "Generate new random SCAP keys for one of your organization's devices - to replace a set of compromised keys, for instance.",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "downlink": {
+                      "type": "string"
+                    },
+                    "uplink": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      }
+    },
     "/organizations/{organizationId}/members": {
       "parameters": [{ "$ref": "#/components/parameters/organizationId" }],
       "get": {
