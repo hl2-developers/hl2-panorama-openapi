@@ -1185,9 +1185,7 @@
     },
     "/devices/{organizationId}/{deviceId}/routes/{routeId}/activate": {
       "post": {
-        "tags": [
-          "Devices"
-        ],
+        "tags": ["Devices"],
         "summary": "Activate a device route",
         "description": "Activate a route for one of your organization's devices. The device will be provisioned with the provider if necessary.",
         "responses": {
@@ -1214,9 +1212,7 @@
     },
     "/devices/{organizationId}/{deviceId}/routes/{routeId}/deactivate": {
       "post": {
-        "tags": [
-          "Devices"
-        ],
+        "tags": ["Devices"],
         "summary": "Deactivate a device route",
         "description": "Deactivate a route for one of your organization's devices. The device will be deprovisioned with the provider if necessary.",
         "responses": {
@@ -1243,9 +1239,7 @@
     },
     "/devices/{organizationId}/{deviceId}/renew-scap-keys": {
       "post": {
-        "tags": [
-          "Devices"
-        ],
+        "tags": ["Devices"],
         "summary": "Renew a device's SCAP keys",
         "description": "Generate new random SCAP keys for one of your organization's devices - to replace a set of compromised keys, for instance.",
         "responses": {
@@ -1284,9 +1278,7 @@
     },
     "/providers": {
       "get": {
-        "tags": [
-          "Devices"
-        ],
+        "tags": ["Devices"],
         "summary": "List providers",
         "description": "List all the configured LoRaWAN and Sigfox providers.",
         "responses": {
@@ -1320,9 +1312,7 @@
     },
     "/providers/{providerId}": {
       "get": {
-        "tags": [
-          "Devices"
-        ],
+        "tags": ["Devices"],
         "summary": "Get a provider",
         "description": "Get the details for a provider given its ID.",
         "responses": {
@@ -1449,7 +1439,7 @@
       "get": {
         "tags": ["Products"],
         "summary": "List products",
-        "description": "List the products for your organization. Public products not owned by your organization are not listed.",
+        "description": "List the products for your organization.",
         "parameters": [
           { "$ref": "#/components/parameters/limit" },
           { "$ref": "#/components/parameters/page" },
@@ -1577,35 +1567,6 @@
         }
       }
     },
-    "/products": {
-      "get": {
-        "tags": ["Products"],
-        "summary": "List public products",
-        "description": "List all the public products, whether they belong to your organization or not.",
-        "parameters": [
-          { "$ref": "#/components/parameters/limit" },
-          { "$ref": "#/components/parameters/page" },
-          { "$ref": "#/components/parameters/q" },
-          { "$ref": "#/components/parameters/sort" }
-        ],
-        "responses": {
-          "200": {
-            "description": "A list of products.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": { "$ref": "#/components/schemas/ProductInArray" }
-                }
-              }
-            }
-          },
-          "401": { "$ref": "#/components/responses/401" },
-          "429": { "$ref": "#/components/responses/429" },
-          "500": { "$ref": "#/components/responses/500" }
-        }
-      }
-    },
     "/products/{organizationId}/{productId}": {
       "parameters": [
         { "$ref": "#/components/parameters/productId" },
@@ -1614,7 +1575,7 @@
       "get": {
         "tags": ["Products"],
         "summary": "Get a product",
-        "description": "Get the details of one of your organization’s products, or of a public product not owned by your organization.",
+        "description": "Get the details of one of your organization’s products.",
         "responses": {
           "200": {
             "description": "Success",
@@ -1671,7 +1632,7 @@
       "delete": {
         "tags": ["Products"],
         "summary": "Delete a product",
-        "description": "Delete one of your organization’s products. This will only be possible if the product is neither public nor used by any device.",
+        "description": "Delete one of your organization’s products. This will only be possible if the product is not used by any device.",
         "responses": {
           "204": { "$ref": "#/components/responses/204" },
           "401": { "$ref": "#/components/responses/401" },
@@ -2263,8 +2224,7 @@
           "name": { "type": "string" },
           "slug": { "type": "string" },
           "version": { "type": "string" },
-          "organizationId": { "type": "string" },
-          "public": { "type": "boolean" }
+          "organizationId": { "type": "string" }
         }
       },
       "ProductVariable": {
