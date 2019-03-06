@@ -140,12 +140,10 @@
           "content": {
             "application/json": {
               "schema": {
-                "required": ["name", "hasAlerts", "hasHooks"],
+                "required": ["name"],
                 "properties": {
                   "name": { "type": "string" },
-                  "description": { "type": "string" },
-                  "hasAlerts": { "type": "boolean" },
-                  "hasHooks": { "type": "boolean" }
+                  "description": { "type": "string" }
                 }
               }
             }
@@ -1063,12 +1061,10 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": ["name", "hasAlerts", "hasHooks"],
+                "required": ["name"],
                 "properties": {
                   "name": { "type": "string" },
-                  "description": { "type": "string" },
-                  "hasAlerts": { "type": "boolean" },
-                  "hasHooks": { "type": "boolean" }
+                  "description": { "type": "string" }
                 }
               }
             }
@@ -1880,14 +1876,7 @@
         "allOf": [
           { "$ref": "#/components/schemas/ApplicationInArray" },
           { "$ref": "#/components/schemas/ApplicationPermission" },
-          { "$ref": "#/components/schemas/Timestamps" },
-          {
-            "type": "object",
-            "properties": {
-              "hasAlerts": { "type": "boolean" },
-              "hasHooks": { "type": "boolean" }
-            }
-          }
+          { "$ref": "#/components/schemas/Timestamps" }
         ]
       },
       "ApplicationInArray": {
