@@ -140,12 +140,11 @@
           "content": {
             "application/json": {
               "schema": {
-                "required": ["name", "hasAlerts", "hasDashboard", "hasHooks"],
+                "required": ["name", "hasAlerts", "hasHooks"],
                 "properties": {
                   "name": { "type": "string" },
                   "description": { "type": "string" },
                   "hasAlerts": { "type": "boolean" },
-                  "hasDashboard": { "type": "boolean" },
                   "hasHooks": { "type": "boolean" }
                 }
               }
@@ -1064,12 +1063,11 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": ["name", "hasAlerts", "hasDashboard", "hasHooks"],
+                "required": ["name", "hasAlerts", "hasHooks"],
                 "properties": {
                   "name": { "type": "string" },
                   "description": { "type": "string" },
                   "hasAlerts": { "type": "boolean" },
-                  "hasDashboard": { "type": "boolean" },
                   "hasHooks": { "type": "boolean" }
                 }
               }
@@ -1887,7 +1885,6 @@
             "type": "object",
             "properties": {
               "hasAlerts": { "type": "boolean" },
-              "hasDashboard": { "type": "boolean" },
               "hasHooks": { "type": "boolean" }
             }
           }
