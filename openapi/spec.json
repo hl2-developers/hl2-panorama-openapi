@@ -1277,8 +1277,8 @@
     "/providers": {
       "get": {
         "tags": ["Devices"],
-        "summary": "List providers",
-        "description": "List all the configured LoRaWAN and Sigfox providers.",
+        "summary": "List platform providers",
+        "description": "List all LoRaWAN and Sigfox providers that don't belong to any organization.",
         "responses": {
           "200": {
             "description": "Success",
@@ -1308,11 +1308,49 @@
         }
       }
     },
-    "/providers/{providerId}": {
+    "/providers/{organizationId}": {
       "get": {
-        "tags": ["Devices"],
+        "tags": [
+          "Devices"
+        ],
+        "summary": "List organization providers",
+        "description": "List all LoRaWAN and Sigfox providers for your organization.",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Provider"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      }
+    },
+    "/providers/{organizationId}/{providerId}": {
+      "get": {
+        "tags": [
+          "Devices"
+        ],
         "summary": "Get a provider",
-        "description": "Get the details for a provider given its ID.",
+        "description": "Get the details for one of your providers given its ID.",
         "responses": {
           "200": {
             "description": "Success",
@@ -2276,6 +2314,9 @@
             "type": "string"
           },
           "name": {
+            "type": "string"
+          },
+          "organizationId": {
             "type": "string"
           },
           "slug": {
